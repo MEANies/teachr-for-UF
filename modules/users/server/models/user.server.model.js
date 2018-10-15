@@ -27,8 +27,16 @@ var validateLocalStrategyProperty = function (property) {
  * A Validation function for local strategy email
  */
 var validateLocalStrategyEmail = function (email) {
-  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
+  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }) && validateUFLEmail(email));
 };
+
+var validateUFLEmail = function (email) {
+  if(/@ufl.edu\s*$/.test(email)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 /**
  * A Validation function for username
@@ -77,7 +85,7 @@ var UserSchema = new Schema({
     lowercase: true,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
+    validate: [validateLocalStrategyEmail, 'Please fill a valid UFL email address (end with @ufl.edu)']
   },
   username: {
     type: String,
@@ -90,6 +98,10 @@ var UserSchema = new Schema({
   password: {
     type: String,
     default: ''
+  },
+  type: {
+    type: String,
+    required: 'please choose your role!'
   },
   salt: {
     type: String
