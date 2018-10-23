@@ -29,9 +29,9 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'MEAN',
+  sessionSecret: process.env.SESSION_SECRET || 'MEANIES',
   // sessionKey is the cookie session name
-  sessionKey: 'sessionId',
+  sessionKey: 'sessionTeachr',
   sessionCollection: 'sessions',
   // Lusca config
   csrf: {
