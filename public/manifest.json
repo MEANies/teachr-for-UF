@@ -1,11 +1,11 @@
 {
-  "name": "meanjs",
-  "short_name": "meanjs",
+  "name": "Teachr",
+  "short_name": "Teachr",
   "start_url": ".",
   "display": "browser",
   "background_color": "#fff",
   "theme_color": "#000",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
+  "description": "UF Office Hour location and time tracking app.",
   "icons": [{
     "src": "/modules/core/client/img/brand/icon.png",
     "sizes": "128x128",
