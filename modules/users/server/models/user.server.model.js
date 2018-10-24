@@ -99,10 +99,10 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
-  type: {
-    type: String,
-    required: 'please choose your role!'
-  },
+  // type: {
+  //   type: String,
+  //   required: 'please choose your role!'
+  // },
   salt: {
     type: String
   },
@@ -119,9 +119,9 @@ var UserSchema = new Schema({
   roles: {
     type: [{
       type: String,
-      enum: ['user', 'admin']
+      enum: ['user', 'admin', 'instructor']
     }],
-    default: ['user'],
+    //default: ['user'],
     required: 'Please provide at least one role'
   },
   updated: {
