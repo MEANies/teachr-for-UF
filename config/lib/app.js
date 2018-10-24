@@ -9,6 +9,7 @@ var config = require('../config'),
   chalk = require('chalk'),
   seed = require('./mongo-seed');
 
+// What does database seeding do and why are we warned about it?
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
     console.log(chalk.bold.red('Warning:  Database seeding is turned on'));
