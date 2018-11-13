@@ -1,7 +1,2 @@
-'use strict';
-
-/**
- * Module dependencies.
- */
-var app = require('./config/lib/app');
+var app = require('./server/config/app.js');
 var server = app.start();
