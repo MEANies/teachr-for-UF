@@ -3,6 +3,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
       $scope.listings = response.data;
+      console.log(response.data);
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -39,6 +40,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     $scope.showDetails = function(index) {
       angular.element('#moreInfo').collapse("show");
+      $scope.detailedInfo = $scope.listings[index];
+    };
+
+// TODO
+    $scope.starListing = function(index) {
+      // angular.element('#moreInfo').collapse("show");
       $scope.detailedInfo = $scope.listings[index];
     };
   }
