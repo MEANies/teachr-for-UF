@@ -24,12 +24,12 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        res.body.should.have.length(147);
+        // res.body.should.have.length(6711);
         done();
       });
   });
   it('should be able to retrieve a single listing', function(done) {
-    Listing.findOne({name: 'Library West'}, function(err, listing) {
+    Listing.findOne({code: 'MDT7710'}, function(err, listing) {
       if(err) {
         console.log(err);
       } else {
@@ -38,9 +38,13 @@ describe('Listings CRUD tests', function() {
           .end(function(err, res) {
             should.not.exist(err);
             should.exist(res);
-            res.body.name.should.equal('Library West');
-            res.body.code.should.equal('LBW');
-            res.body.address.should.equal('1545 W University Ave, Gainesville, FL 32603, United States');
+            res.body.name.should.equal('Elec Topic Emerg Med');
+            res.body.code.should.equal('MDT7710');
+            res.body.department.should.equal('Medicine-Emergency Medicine,Medicine-Emergency Medicine');
+            res.body.instructor_names[0].should.equal(
+  'Leslie Nickels,Carolyn Holland,Matthew Ryan,Marie Elie,Elizabeth Devos,Harvey Rohlwing,Leslie Nickels,Elizabeth Devos,Harvey Rohlwing,Carolyn Holland,Matthew Ryan,Marie Elie'
+  );
+            res.body.description[0].should.equal('Elec Topic Emerg Med');
             res.body._id.should.equal(listing._id.toString());
             done();
           });
@@ -50,9 +54,10 @@ describe('Listings CRUD tests', function() {
 
   it('should be able to save a listing', function(done) {
     var listing = {
-      code: 'CEN3035', 
+      code: 'CEN3031', 
       name: 'Introduction to Software Engineering', 
-      address: '432 Newell Dr, Gainesville, FL 32611'
+      department: 'Computer and Information Sciences',
+      instructor_names: ['Dr. Philippa Brown']
     };
     agent.post('/api/listings')
       .send(listing)
@@ -61,8 +66,9 @@ describe('Listings CRUD tests', function() {
         should.not.exist(err);
         should.exist(res.body._id);
         res.body.name.should.equal('Introduction to Software Engineering');
-        res.body.code.should.equal('CEN3035');
-        res.body.address.should.equal('432 Newell Dr, Gainesville, FL 32611');
+        res.body.code.should.equal('CEN3031');
+        res.body.department.should.equal('Computer and Information Sciences');
+        res.body.instructor_names[0].should.equal('Dr. Philippa Brown');
         id = res.body._id;
         done();
       });
@@ -72,7 +78,8 @@ describe('Listings CRUD tests', function() {
     var updatedListing = {
       code: 'CEN3031', 
       name: 'Introduction to Software Engineering', 
-      address: '432 Newell Dr, Gainesville, FL 32611'
+      department: 'Computer and Information Sciences',
+      instructor_names: 'Dr. Philippa Brown,Pedro G. Feijoo-Garcia',
     };
 
     agent.put('/api/listings/' + id)
@@ -83,12 +90,14 @@ describe('Listings CRUD tests', function() {
         should.exist(res.body._id);
         res.body.name.should.equal('Introduction to Software Engineering');
         res.body.code.should.equal('CEN3031');
-        res.body.address.should.equal('432 Newell Dr, Gainesville, FL 32611');
+        res.body.department.should.equal('Computer and Information Sciences');
+        res.body.instructor_names[0].should.equal('Dr. Philippa Brown,Pedro G. Feijoo-Garcia');
         done();
       });
   });
 
   it('should be able to delete a listing', function(done) {
+    // console.log(id);
     agent.delete('/api/listings/' + id)
       .expect(200)
       .end(function(err, res) {
