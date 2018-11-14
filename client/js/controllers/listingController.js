@@ -45,7 +45,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 // TODO
     $scope.starListing = function(index) {
-      // angular.element('#moreInfo').collapse("show");
+      angular.element('#moreInfo').collapse("show");
       $scope.detailedInfo = $scope.listings[index];
     };
   }
