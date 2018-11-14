@@ -3,8 +3,10 @@
   width: 100%;
   padding: 10px;
 }
-#table_container {
+.tableWrapper {
   padding-left: 0px;
+  max-height: 400px;
+  overflow: auto;
 }
 ul {
   list-style-type: none;
