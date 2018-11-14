@@ -44,3 +44,17 @@ li a:hover {
 #search-bar{
   margin-bottom:10px;
 }
+#col-center{
+  text-align: center;
+}
+
+
+/* .loginButton{
+  background-color: cyan;
+  border-radius: 6px;
+  color: #333;
+}
+.loginButton:hover{
+  background-color: lightcyan;
+  color: #444;
+} */
