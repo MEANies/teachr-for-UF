@@ -10,5 +10,10 @@ var path = require('path'),
  * Coursecruds module init function.
  */
 module.exports = function (app, db) {
+	// app.init();
 
+	db = config.db.uri;
+	// console.log(db);
+	// console.log(app);
+	// app.start();
 };
