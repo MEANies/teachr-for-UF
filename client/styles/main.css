@@ -44,3 +44,7 @@ li a:hover {
 #search-bar{
   margin-bottom:10px;
 }
+#star
+{
+  color: yellow;
+}
