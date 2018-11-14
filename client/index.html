@@ -41,17 +41,15 @@
                   <div class="tableWrapper">
                       <table class="table table-striped table-hover">
                           <tr>
+                              <th>Code</th>
                               <th>Name</th>
-                              <th>Course(s)</th>
                           </tr>
-                          <tr>
-                              <td>Jeremiah Blanchard</td>
-                              <td>Operating Systems<br>Programming Fundamentals One</td>
-                          </tr>
-                          <tr>
-                              <td>Alin Dobra, Ph.D.</td>
-                              <td>Operating Systems<br>Programming Fundamentals One</td>
-                          </tr>
+                          <tr ng-repeat="listing in listings | filter: query" >
+                            
+                          <td>{{listing.code}}</td>
+                          <td>{{listing.name}}</td>
+                          <td ng-click="deleteListing($index)"><span style="color: red;" class="glyphicon glyphicon-remove"></span></td>
+                        </tr>
                       </table>
                   </div>
               </div>

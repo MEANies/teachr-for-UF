@@ -6,13 +6,22 @@ var should = require('should'),
 var listing, id;
 
 listing =  {
-  code: "LBWEST", 
-  name: "Library West", 
-  coordinates: {
-    latitude: 29.6508246, 
-    longitude: -82.3417565
-  }, 
-  address: "1545 W University Ave, Gainesville, FL 32603, United States"
+  // code: "LBWEST", 
+  // name: "Library West", 
+  // coordinates: {
+  //   latitude: 29.6508246, 
+  //   longitude: -82.3417565
+  // }, 
+  // address: "1545 W University Ave, Gainesville, FL 32603, United States"
+    code: "MDT7710",
+    name: "Elec Topic Emerg Med",
+    department: "Medicine-Emergency Medicine,Medicine-Emergency Medicine",
+    instructor_names: [
+        "Leslie Nickels,Carolyn Holland,Matthew Ryan,Marie Elie,Elizabeth Devos,Harvey Rohlwing,Leslie Nickels,Elizabeth Devos,Harvey Rohlwing,Carolyn Holland,Matthew Ryan,Marie Elie"
+    ],
+    description: [
+        "Elec Topic Emerg Med"
+    ],
 }
 
 describe('Listing Schema Unit Tests', function() {
@@ -29,10 +38,11 @@ describe('Listing Schema Unit Tests', function() {
      */
     this.timeout(10000);
 
-    it('saves properly when code and name provided', function(done){
+    it('saves properly when required fields provided', function(done){
       new Listing({
         name: listing.name, 
-        code: listing.code
+        code: listing.code,
+        department: listing.department,
       }).save(function(err, listing){
         should.not.exist(err);
         id = listing._id;
@@ -40,7 +50,7 @@ describe('Listing Schema Unit Tests', function() {
       });
     });
 
-    it('saves properly when all three properties provided', function(done){
+    it('saves properly when properties provided', function(done){
       new Listing(listing).save(function(err, listing){
         should.not.exist(err);
         id = listing._id;
@@ -50,7 +60,8 @@ describe('Listing Schema Unit Tests', function() {
 
     it('throws an error when name not provided', function(done){
       new Listing({
-        code: listing.code
+        code: listing.code,
+        department: listing.department,
       }).save(function(err){
         should.exist(err);
         done();
@@ -59,7 +70,18 @@ describe('Listing Schema Unit Tests', function() {
 
     it('throws an error when code not provided', function(done){
       new Listing({
-        name: listing.name
+        name: listing.name,
+        department: listing.department,
+      }).save(function(err){
+        should.exist(err);
+        done();
+      })
+    });
+
+    it('throws an error when department not provided', function(done){
+      new Listing({
+        name: listing.name,
+        code: listing.code,
       }).save(function(err){
         should.exist(err);
         done();
