@@ -28,6 +28,17 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.entry = undefined;
     };
 
+    // $scope.updateListing = function(index) {
+    //   Listings.put($scope.entry)
+    //   .then(function(res){
+    //     $scope.listings[index] = (res.data);
+    //     $scope.entry = undefined;
+    //   })
+    //   .catch(function(err){
+    //     console.log(err);
+    //   })
+    // }
+
     $scope.deleteListing = function(index) {
 	   /**TODO
         Delete the article using the Listings factory. If the removal is successful, 
@@ -39,7 +50,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     };
 
     $scope.showDetails = function(index) {
-      angular.element('#moreInfo').collapse("show");
+      // angular.element('#moreInfo').collapse("show");
+      // <!-- TODO: fix bug where department and description are wrong index -->
+
       $scope.detailedInfo = $scope.listings[index];
     };
 

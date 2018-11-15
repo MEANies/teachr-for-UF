@@ -45,17 +45,30 @@
                             <th>Code</th>
                             <th>Name</th>
                             <th>Instructors</th>
+                            <th>Department</th>
+                            <th>Description</th>
+                            <th>Location</th>
                             <th>Save</th>
                         </tr>
                         <tr ng-repeat="listing in listings | filter: search" >
 
-                        <td>{{listing.code}}</td>
-                        <td>{{listing.name}}</td>
-                        <td>{{listing.instructor_names}}</td>
-                        <td ng-click="starListing($index)" >
-                          <span id="star" style="color: black;" class="glyphicon glyphicon-star"></span>
-                        </td>
-                      </tr>
+                          <td>{{listing.code}}</td>
+                          <td>{{listing.name}}</td>
+                          <td><span ng-repeat="list in listing.instructor_names">{{list}} </span></td>
+                          <td>{{listing.department}}</td>
+                          <td>{{listing.description}}</td>
+                          <td>{{listing.building}}</td>
+                          <!-- <td>
+                              <h2>Update Listing</h2>
+                              Code: <input type="text" ng-model="newListing.code" /><br />
+                              Name: <input type="text" ng-model="newListing.name" /><br />
+                              <button class="btn btn-primary" ng-click="updateListing($index)">Update</button>
+                          </td> -->
+                          <td ng-click="starListing($index)" >
+                            <span id="star" style="color: black;" class="glyphicon glyphicon-star"></span>
+                          </td>
+                        </tr>
+
                     </table>
                 </div>
             </div>

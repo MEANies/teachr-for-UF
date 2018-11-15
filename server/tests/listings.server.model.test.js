@@ -19,9 +19,8 @@ listing =  {
     instructor_names: [
         "Leslie Nickels,Carolyn Holland,Matthew Ryan,Marie Elie,Elizabeth Devos,Harvey Rohlwing,Leslie Nickels,Elizabeth Devos,Harvey Rohlwing,Carolyn Holland,Matthew Ryan,Marie Elie"
     ],
-    description: [
+    description:
         "Elec Topic Emerg Med"
-    ],
 }
 
 describe('Listing Schema Unit Tests', function() {

@@ -4,16 +4,20 @@ angular.module('listings', []).factory('Listings', function($http) {
     getAll: function() {
       return $http.get('./api/listings');
     },
-	
-	create: function(listing) {
+  
+    create: function(listing) {
     return $http.post('./api/listings', listing);
     }, 
 
+    // update: function(listing) {
+    //   return $http.put('./api/listings', listing);
+    // },
+
     delete: function(id) {
-	   /**TODO
+     /**TODO
         return result of HTTP delete method
        */
-      return $http.delete('./api/listings/' + id);
+       return $http.delete('./api/listings/' + id)
     }
   };
 
