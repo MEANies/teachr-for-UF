@@ -39,27 +39,46 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     //   })
     // }
 
-    $scope.deleteListing = function(index) {
-	   /**TODO
+    $scope.deleteListing = function(listing) {
+	   /**
         Delete the article using the Listings factory. If the removal is successful, 
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
-      Listings.delete($scope.listings[index]._id);
-      $scope.listings.splice(index,1);
-      $scope.detailedInfo = undefined;
+      var index = $scope.listings.indexOf(listing);
+      if (index != -1) {
+          Listings.delete($scope.listings[index]._id);
+          $scope.listings.splice(index, 1);
+          $scope.detailedInfo = undefined;
+      }
+      else{
+        throw err;
+      }
     };
 
-    $scope.showDetails = function(index) {
-      // angular.element('#moreInfo').collapse("show");
-      // <!-- TODO: fix bug where department and description are wrong index -->
-
-      $scope.detailedInfo = $scope.listings[index];
+    $scope.showDetails = function(listing) {
+      var index = $scope.listings.indexOf(listing);
+      if (index != -1) {
+          $scope.detailedInfo = $scope.listings[index];
+          // Use {{detailedInfo.description}} on index.html once more detail interface is made
+      }
+      else{
+        throw err;
+      }
     };
 
 // TODO
-    $scope.starListing = function(index) {
-      angular.element('#moreInfo').collapse("show");
-      $scope.detailedInfo = $scope.listings[index];
+    $scope.starListing = function(listing) {
+      var index_previous = $scope.listings.indexOf(listing);
+
+      if(index != -1){
+        //TODO: WIP
+        $scope.listings.splice(index_previous, 1); // remove the listing being passed in
+        $scope.listings.splice(0, 1, listing); // put the listing being passed in at the beginning
+        $scope.listings.splice(index_previous);
+      }
+      else{
+        throw err;
+      }
     };
   }
 ]);
