@@ -67,6 +67,12 @@ li a:hover {
 .panel-group {
   margin-bottom: 0px !important;
 }
+.form-group {
+  margin-bottom: 0px !important;
+}
+.table {
+  margin-bottom: 0px !important;
+}
 #panel1{
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -83,3 +89,7 @@ li a:hover {
 #edit-modal-body{
   padding: 9px !important;
 }
+#cell:hover {
+  background-color: lightskyblue;
+}
+
