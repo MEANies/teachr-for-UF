@@ -14,14 +14,19 @@ var listingSchema = new Schema({
   }, 
   department: {
     type: String,
-    required: true,
   }, 
   instructor_names: {
     type: [String],
   },
   description: {
-    type: [String],
-  }
+    type: String,
+  },
+  building: {
+    type: String,
+  },
+  building_code: {
+    type: String,
+  },
   // created_at: Date,
   // updated_at: Date
 });
