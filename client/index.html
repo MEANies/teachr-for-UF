@@ -17,6 +17,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">My Professors</a></li>
                 <li><a href="#">My TAs</a></li>
+                <li><a href="#">My Courses</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
@@ -32,7 +33,7 @@
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"> Search for...</h4>
+                <h4 class="modal-title"> Search for...*TAs/Professors/Courses*</h4>
             </div>
             <div class="modal-body">
                 <div class="input-group" id="search-bar">
@@ -47,7 +48,7 @@
                             <th>Instructors</th>
                             <th>Save</th>
                         </tr>
-                        <tr ng-repeat="listing in listings | filter: search" >
+                        <tr ng-repeat="listing in listings | filter: search" ng-if="listing.instructor_names[0] !== '' ">
 
                         <td>{{listing.code}}</td>
                         <td>{{listing.name}}</td>
@@ -170,14 +171,6 @@
                       <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
                           <span ng-bind="vm.error"></span>
                       </uib-alert>
-                  <div class="panel-group">
-                      <div class="panel panel-default">
-                          <div class="panel-heading">
-                              <h4 class="panel-title">
-                                  <a>Login</a>
-                              </h4>
-                          </div>
-                          <div class="panel-body">
                               <div class="row">
                                   <div class="col-sm-8" style="border-right: 1px solid #333;">
                                       <div class="form-group row" style="margin-top:15px">
@@ -218,9 +211,8 @@
                                     </div>
                                   </div>
                               </div>
-                          </div>
                       </div>
-                  </div>
+
                   </fieldset>
               </form>
           </div>
