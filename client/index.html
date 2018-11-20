@@ -9,7 +9,9 @@
 
   <script>
     function chBackcolor(e) {
-      e.target.style.background = 'blue';
+      if (e.target.style.background != 'blue')
+        e.target.style.background = 'blue';
+      else e.target.style.background = 'white';
     }
   </script>
 </head>
@@ -144,6 +146,18 @@
                   </div>
                   <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
+                      <div class="form-group">
+                        <h4>
+                          Research Position(s)
+                        </h4>
+                        <div id="research-pos-field">
+                          <label for="researchArea">Area of Research</label>
+                          <br>
+                          <label for="researchHours">Required Hours Per Week</label>
+                          <br>
+                          <label for="researchLocation">Location</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
