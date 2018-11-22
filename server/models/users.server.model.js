@@ -1,5 +1,6 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
+		bcrypt = require('bcrypt'),
     Schema = mongoose.Schema;
 
 var validateUFLEmail = function(email) {
@@ -57,6 +58,16 @@ usersSchema.pre('save', function(next) {
   next();
 });
 
+usersSchema.pre('save', function (next) {
+  var user = this;
+  bcrypt.hash(user.password, 10, function (err, hash) {
+    if (err) {
+      return next(err);
+    }
+    user.password = hash;
+    next();
+  })
+});
 
 
 var User = mongoose.model('User', usersSchema, 'users');

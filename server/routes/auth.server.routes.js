@@ -1,6 +1,7 @@
 /* Dependencies */
 var express = require('express'),
-    User = require('../models/users.server.model.js');
+    User = require('../models/users.server.model.js'),
+    bcrypt = require('bcrypt'),
     router = express.Router();
 
 function getUser(username) {
@@ -121,11 +122,18 @@ router.post("/authorize", async (req, res, next) => {
             return res.status(400).send("The following username entered does not exist in the DB: " + req.body.username);
         }
 
-        if(user.password === req.body.password){
-            return res.redirect('../../dashboard.html');
-        }
+        // if(user.password === req.body.password){
+        //     return res.redirect('../../home.html');
+        // }
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+            if(result === true) {
+                res.redirect('../../home.html');
+            } else {
+                res.status(401).send("UNAUTHORIZED ACCESS: Incorrect password for username " + req.body.username + "!!!");
+            }
+        })
     
-        return res.status(401).send("UNAUTHORIZED ACCESS: Incorrect password for username " + req.body.username + "!!!");
+        //return res.status(401).send("UNAUTHORIZED ACCESS: Incorrect password for username " + req.body.username + "!!!");
     
     } catch (error) {
         return res.status(500).send("Internal Server Error occured while trying to query MongoDB!");
