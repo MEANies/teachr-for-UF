@@ -1,4 +1,5 @@
-angular.module('listings').controller('RegisterController', ['$scope', '$http',
+angular.module('register', [''])
+    .controller('RegisterController', ['$scope', '$http',
 
     function ($scope, $http) {
 

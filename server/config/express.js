@@ -29,6 +29,7 @@ module.exports.init = function() {
   Use the listings router for requests to the api */
   app.use('/api/listings',listingsRouter);
   app.use('/api/auth', authRouter);
+  
 
   /**TODO 
   Go to homepage for all routes not specified */ 
