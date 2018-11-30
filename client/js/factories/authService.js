@@ -1,6 +1,6 @@
 angular.module('authService', [])
     
-    .factory('Auth', function($window) {
+  .factory('Auth', function($window) {
     // var baseURL = window.location.protocol + '//' + window.location.host;
       var authenToken = {};
 
@@ -18,5 +18,21 @@ angular.module('authService', [])
       };
 
       return authenToken;
-  });
+  })
+
+  //for backend use
+  .factory('AuthBackend', function(Auth) {
+    var authen = {};
+
+    anthen.request = function(config) {
+      var token = Auth.getToken();
+
+      if(token) config.headers['access-token'] = token;
+
+      return config;
+    };
+
+    return authen;
+  })
+  
   
