@@ -4,9 +4,7 @@ function($rootScope, $uibModal, $state, $stateParams, $window) {
     var modalInstance = $uibModal.open({
         windowClass: 'modal-center',
         templateUrl: 'views/search.modal.view.html',
-        controller: function(item) {
-          this.item = item;
-        },
+        controller: 'ListingsController',
         controllerAs: '$ctrl',
         resolve: {
           item: function () {

@@ -1,5 +1,5 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
-  function($scope, Listings) {
+  function($scope, Listings, $uibModalInstance) {
 
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
