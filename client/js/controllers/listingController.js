@@ -10,6 +10,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     });
     $scope.number = 5;
     $scope.detailedInfo = undefined;
+    // Centered at UF
+    $scope.mapLat = 29.651634;
+    $scope.mapLong = -82.324829;
 
     $scope.addListing = function() {
       /**TODO 
@@ -67,6 +70,29 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
+    $scope.findLocation = function(listing){
+      var index = $scope.listings.indexOf(listing);
+      if (index != -1 && $scope.listings[index].building_code != "")
+      {
+          var staticUrl = 'https://campusmap.ufl.edu/library/cmapjson/search.json';
+
+          $.getJSON(staticUrl, function(data) {
+            console.log("This is an example of a static JSON file being served by a web server.")
+            console.log(data);
+            
+            for (var i = 0; i < data.length(); i++) {
+              if (data[i].ID == $scope.listings[index].building_code){
+                $scope.mapLat = data[i].LAT;
+                $scope.mapLong = data[i].LON;
+              }
+            }
+          });
+      }
+      else{
+        throw err;
+      }
+      
+    }
 // TODO
     $scope.starListing = function(listing) {
       var index_previous = $scope.listings.indexOf(listing);
