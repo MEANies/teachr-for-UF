@@ -55,13 +55,35 @@ angular.module('user', ['userServices'])
 						//$location.path('/home');
 						window.location.href = "/login.html";
 					}, function(err) {
-						if(err.status != 200) {
+						if(err.status !== 200) {
 							vm.inputError = true;
 						}
 			});
 		};
 
 
-		
-		
-  });
+		vm.login = function(loginData) {
+			vm.formError = false;
+			vm.inputError = false;
+			//if user is missing any field
+			if(vm.loginData.username === undefined || vm.loginData.password == undefined || vm.loginData.username == "" || vm.loginData.password == ""){
+				vm.formError = true;
+					return;
+			}
+	
+			//call methods inside userService
+			User.login(user.loginData)
+				.then(
+					function(res) {
+						//consider using $location.path
+						window.location.href = "/home.html";
+					}, function(err) {
+						if(err.status !== 200) {
+							console.log(err.status);
+							vm.inputError = true;
+						}
+			});
+			
+		};
+  }
+);
