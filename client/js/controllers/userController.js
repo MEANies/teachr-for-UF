@@ -1,5 +1,5 @@
-angular.module('user')
-    .controller('UserController', ['$scope', '$location', '$http', '$timeout', 'userService', 
+angular.module('user', ['userServices'])
+    .controller('UserController', 
 
   function($scope, $location ,$http, $timeout, User) {
     
@@ -64,6 +64,4 @@ angular.module('user')
 
 		
 		
-  }
-
-]);
+  });
