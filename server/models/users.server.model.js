@@ -44,6 +44,10 @@ var usersSchema = new Schema({
   created_at: {
     type: Date,
     default: Date.now
+  },
+  tempToken: {
+    type: String,
+    required: true
   }
 });
 

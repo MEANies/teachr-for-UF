@@ -1,6 +1,7 @@
 /* Dependencies */
 var express = require('express'),
     User = require('../models/users.server.model.js'),
+    jwt = require('jsonwebtoken'),
     bcrypt = require('bcrypt'),
     router = express.Router();
 
@@ -94,8 +95,10 @@ router.post("/create", async (req, res, next) => {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            role: req.body.role
+            role: req.body.role,
         };
+        userObject.tempToken = jwt.sign({username: userObject.username, email: userObject.email}, 'Hello', {expiresIn: '1 days'});
+        
     
         var newUser = new User(userObject);
         newUser.save(function(err){
@@ -104,8 +107,7 @@ router.post("/create", async (req, res, next) => {
                 console.log(err.message);
                 return res.status(500).send("Internal Server Error while trying to write new user object into DB!");
             }
-    
-            return res.status(200).json(newUser);
+            return res.status(200).json(userObject);
     
         });
 
@@ -127,7 +129,17 @@ router.post("/authorize", async (req, res, next) => {
         // }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
             if(result === true) {
-                res.redirect('../../home.html');
+                var token = jwt.sign({
+                    username: req.body.username,
+                    email: req.body.email
+                }, 'Hello', {
+                    expiresIn: '1 days'
+                });
+
+                res.json({
+                    token: token,
+                    role: user.role
+                })
             } else {
                 res.status(401).send("UNAUTHORIZED ACCESS: Incorrect password for username " + req.body.username + "!!!");
             }
@@ -141,5 +153,6 @@ router.post("/authorize", async (req, res, next) => {
 
 
 });
+
 
 module.exports = router;

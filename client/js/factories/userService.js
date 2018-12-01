@@ -3,12 +3,15 @@ angular.module('userService', ['$http', 'authServices'])
         user = {};
 
         user.register = function(data) {
-            return $http.post('/api/auth/create', data);
+            return $http.post('/api/auth/create', data).then(function(data) {
+                Auth.setRole(data.data.role);
+            });
         };
 
         user.login = function(data) {
             return $http.post('/api/auth/authorize', data).then(function(data) {
                 Auth.setToken(data.data.token);
+                Auth.setRole(data.data);
                 return data;
             });
         };
@@ -20,6 +23,7 @@ angular.module('userService', ['$http', 'authServices'])
             else 
                 return false;
         };
+
 
         user.logout = function() {
             Auth.deleteToken();

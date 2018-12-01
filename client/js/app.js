@@ -1,6 +1,7 @@
 /* register the modules the application depends upon here*/
 angular.module('directoryApp', 
-    ['listings',
+    ['Routers',
+    'listings',
     'user',
     'register',
     'authService',
@@ -8,4 +9,4 @@ angular.module('directoryApp',
     ]);
 
 /* register the application and inject all the necessary dependencies */
-var app = angular.module('directoryApp', ['listings']);
+//var app = angular.module('directoryApp', ['listings']);

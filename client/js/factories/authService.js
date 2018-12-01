@@ -7,15 +7,27 @@ angular.module('authService', [])
       authenToken.setToken = function(token) {
         $window.localStorage.setItem('token', token);
       };
+
+      authenToken.setRole = function(role) {
+        $window.localStorage.setItem('role', role);
+      }
       //remove user's authentication when the user closes the browser
-      authenToken.deleteToken = function(token) {
+      authenToken.deleteToken = function() {
         $window.localStorage.removeItem('token');
+      };
+
+      authenToken.deleteRole = function() {
+        $window.localStorage.removeItem('role');
       };
 
       //Get user's current token from the browser cookie
       authenToken.getToken = function() {
         return $window.localStorage.getItem('token');
       };
+
+      authenToken.getRole = function() {
+        $window.localStorage.getItem('role');
+      }
 
       return authenToken;
   })

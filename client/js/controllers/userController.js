@@ -37,13 +37,13 @@ angular.module('user', ['userServices'])
 		var vm = this;
 		
 		//Function to resgiter users
-    vm.resgiter = function(resgiterData) {
+    vm.resgiter = function(registerData) {
 			vm.formError = false;
 			vm.inputError = false;
 			//call methods inside userService 
 
-			if (vm.resgiterData.username === undefined || vm.resgiterData.password === undefined ||vm.resgiterData.email === undefined || vm.resgiterData.role === undefined ||
-				vm.resgiterData.username == "" || vm.resgiterData.password == "" || vm.resgiterData.email == "" || vm.resgiterData.role == '') {
+			if (vm.registerData.username === undefined || vm.registerData.password === undefined ||vm.registerData.email === undefined || vm.registerData.role === undefined ||
+				vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.role == '') {
 				vm.formError = true;
 				return;
 			}

@@ -26,4 +26,14 @@ var app = angular.module('Routers', ['ui.router'])
 			.otherwise({
 				redirectTo: '/'
 			});
+	});
+
+app.run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
+	$rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+		if(Auth.getRole() !== toStateParams.roles) {
+			$state.go('login');
+		} else {
+			console.log('Not role');
+		}
 	})
+}]);
