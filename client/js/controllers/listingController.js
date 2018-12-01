@@ -1,5 +1,6 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 
+angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
+
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
       $scope.listings = response.data;
@@ -7,7 +8,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-
+    $scope.number = 5;
     $scope.detailedInfo = undefined;
 
     $scope.addListing = function() {
