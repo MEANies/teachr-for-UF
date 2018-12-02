@@ -1,4 +1,4 @@
-angular.module('directoryApp').controller('SearchController', 
+angular.module('searchController', []).controller('SearchController', 
 function($rootScope, $uibModal, $state, $stateParams, $window) {
 
     var modalInstance = $uibModal.open({

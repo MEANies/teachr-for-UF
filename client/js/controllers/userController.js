@@ -1,4 +1,4 @@
-angular.module('user', ['userServices'])
+angular.module('userController', ['userService'])
     .controller('UserController', 
 
   function($scope, $location ,$http, $timeout, User) {

@@ -1,4 +1,4 @@
-angular.module('directoryApp').controller('EditController', 
+angular.module('editController', []).controller('EditController', 
 function($rootScope, $uibModal, $state, $stateParams, $window) {
 
     var modalInstance = $uibModal.open({

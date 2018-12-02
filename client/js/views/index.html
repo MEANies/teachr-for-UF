@@ -28,15 +28,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Personal CSS Files -->
-    <link rel="stylesheet" type="text/css" href="assets/css/home-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/index-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/avatar-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/index-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/about-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/contact-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/profile-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/login-style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/register-style.css">
+    <link rel="stylesheet" type="text/css" href="styles/logincss.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
 
     <!-- Angular Config/Routes -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
@@ -47,10 +40,9 @@
     <script src="js/controllers/editController.js"></script>
     <script src="js/controllers/listingController.js"></script>
     <script src="js/controllers/mainController.js"></script>
-    <script src="js/controllers/mainController.js"></script>
-    <script src="js/controllers/mainController.js"></script>
-    <script src="js/controllers/mainController.js"></script>
-    <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/searchController.js"></script>
+    <script src="js/controllers/userController.js"></script>
+    
 
     <!-- Angular Services  -->
     <script src="js/factories/authService.js"></script>
@@ -87,10 +79,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="register" ng-show="!vm.isLoggedIn">Register</a>
+                        <a class="nav-link" href="/register" ng-show="!vm.isLoggedIn">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="login" ng-show="!vm.isLoggedIn">Login</a>
+                        <a class="nav-link" href="/login" ng-show="!vm.isLoggedIn">Login</a>
                     </li>
                     <!-- <li class="nav-item dropdown profile-dropdown" ng-show="mainCtrl.isLoggedIn">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{mainCtrl.username}}<span class="caret"></span></a>
@@ -111,7 +103,7 @@
     <!-- contents of the website -->
     <div id="pages" class="container">
         <main role="main">
-            <div ui-view></div>
+            <ui-view></ui-view>
         </main>
     </div>
 

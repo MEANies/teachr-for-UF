@@ -1,5 +1,5 @@
-angular.module('userService', ['$http', 'authServices'])
-    .factory('User', function($http, Auth) {
+angular.module('userService', ['authService'])
+    .factory('User', function($http, $q, Auth) {
         user = {};
 
         user.register = function(data) {

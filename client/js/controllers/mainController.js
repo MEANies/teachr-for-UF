@@ -1,4 +1,4 @@
-angular.module('listings', ['authService', 'userService'])
+angular.module('mainController', ['authService', 'userService'])
     .controller('MainController', function($rootScope, $location, $timeout, Auth, User) {
         var vm = this;
         vm.loggedin = false;
