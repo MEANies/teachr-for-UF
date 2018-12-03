@@ -1,8 +1,10 @@
 angular.module('userService')
     .factory('User', function (Auth) {
         user = {};
+        console.log("Debug: User.register");
 
         user.register = function (data) {
+            console.log("Debug: User.register");
             return $http.post('/api/auth/create', data).then(function (data) {
                 Auth.setRole(data.data.role);
             });
