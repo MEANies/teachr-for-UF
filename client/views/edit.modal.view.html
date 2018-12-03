@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <button type="button" class="close" data-dismiss="modal" ng-click="$ctrl.cancel()">&times;</button>
     <h4 class="modal-title"> Edit What Students Can See</h4>
 </div>
 <div class="modal-body" id="edit-modal-body">
@@ -134,5 +134,5 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.ok()" data-dismiss="modal">Close</button>
 </div>

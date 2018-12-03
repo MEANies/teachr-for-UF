@@ -1,7 +1,7 @@
 angular.module('user')
     .controller('UserController', 
 
-  function($scope, $location ,$http, $timeout, User, $uibModalInstance) {
+  function($scope, $state, $location ,$http, $timeout, User, $uibModalInstance) {
 
     // $scope.logIn = function(){
 
@@ -33,10 +33,14 @@ angular.module('user')
     //};
 
     //using 'this' instead of 'scope', need to use Controller as vm in views or ui-routers
-		var vm = this;
+	var vm = this;
 		
+	vm.cancel = function() {
+		$uibModalInstance.dismiss('cancel');
+	}
 		//Function to resgiter users
-    vm.resgiter = function(registerData) {
+    vm.register = function(registerData) {
+			console.log("Debug: register");
 			vm.formError = false;
 			vm.inputError = false;
 			//call methods inside userService 
@@ -52,7 +56,7 @@ angular.module('user')
 						console.log(response.data);
 						//consider using $location instead of windows
 						//$location.path('/home');
-						window.location.href = "/login.html";
+						$state.go('signin');
 					}, function(err) {
 						if(err.status !== 200) {
 							vm.inputError = true;

@@ -12,8 +12,7 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ui.bootstrap
         // Classical routes naming
         $stateProvider
             .state('home', {
-                url: '/home',
-                templateUrl: 'index.html'
+                url: '/home'
             })
 
             .state('edit', {
