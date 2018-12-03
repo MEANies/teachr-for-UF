@@ -4,7 +4,7 @@ angular.module('directoryApp')
             windowClass: 'modal-center',
             templateUrl: 'views/signin.modal.view.html',
             controller: 'UserController',
-            controllerAs: '$ctrl',
+            controllerAs: 'vm',
             resolve: {
               item: function () {
                 return $stateParams.id
@@ -30,7 +30,7 @@ angular.module('directoryApp')
             windowClass: 'modal-center',
             templateUrl: 'views/signup.modal.view.html',
             controller: 'UserController',
-            controllerAs: '$ctrl',
+            controllerAs: 'vm',
             resolve: {
               item: function () {
                 return $stateParams.id
