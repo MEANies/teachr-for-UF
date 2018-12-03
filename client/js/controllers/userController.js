@@ -1,47 +1,16 @@
 angular.module('user')
-	.controller('UserController',
-
-		function ($scope, $state, $location, $http, $timeout, User, $uibModalInstance) {
-
-			// $scope.logIn = function(){
-
-			//     $scope.formError = false;
-			//     $scope.inputError = false;
-
-			//     if($scope.username === undefined || $scope.password == undefined || $scope.username == "" || $scope.password == ""){
-			//         $scope.formError = true;
-			//         return;
-			//     }
-
-			// $http.post('/api/auth/authorize', {username: $scope.username, password: $scope.password})
-			//     .then(function(response){
-			//         window.location.href = "/home.html";
-			//     },
-			//     function(response){
-			//         if(response.status !== 200){
-			//             console.log(response.status);
-			//             $scope.inputError = true;
-			//             //$scope.$apply();
-			//         }
-			//     });
-
-			/*
-			To-do:
-				call the APIs inside the service instead of directly use http
-			*/
-
-			//};
+	.controller('UserController', ['$scope', '$state', 'User', '$uibModalInstance',
+		function ($scope, $state, User, $uibModalInstance) {
 
 			//using 'this' instead of 'scope', need to use Controller as vm in views or ui-routers
 			var vm = this;
 			vm.userForm = 'registerForm';
-
 			vm.cancel = function () {
 				$uibModalInstance.dismiss('cancel');
 			}
-			//Function to resgiter users
+			//Function to register users
 			vm.register = function () {
-				console.log("Debug: register");
+				console.log("Debug: vm.register 1");
 				vm.formError = false;
 				vm.inputError = false;
 				//call methods inside userService 
@@ -50,19 +19,17 @@ angular.module('user')
 					vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.role == '') {
 					vm.formError = true;
 					return;
-				}
-				User.register(vm.registerData)
-					.then(
-						function (response) {
-							console.log(response.data);
-							//consider using $location instead of windows
-							//$location.path('/home');
-							$state.go('signin');
-						}, function (err) {
-							if (err.status !== 200) {
-								vm.inputError = true;
-							}
-						});
+				}		
+				User.register(vm.registerData).then(function (response) {
+					console.log(response.data);
+					//consider using $location instead of windows
+					//$location.path('/home');
+					$state.go('signin');
+				}, function (err) {
+					if (err.status !== 200) {
+						vm.inputError = true;
+					}
+				});
 			};
 
 
@@ -90,4 +57,4 @@ angular.module('user')
 
 			};
 		}
-	);
+	]);

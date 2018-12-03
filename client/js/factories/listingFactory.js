@@ -1,4 +1,4 @@
-angular.module('listings', []).factory('Listings', function($http) {
+angular.module('listings').factory('Listings', function($http) {
   // var baseURL = window.location.protocol + '//' + window.location.host;
   var methods = {
     getAll: function() {

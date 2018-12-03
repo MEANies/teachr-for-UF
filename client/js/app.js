@@ -1,8 +1,7 @@
 /* register the modules the application depends upon here*/
 angular.module('listings', ['ngAnimate', 'ui.bootstrap', 'ui.router']);
 angular.module('authService', []);
-angular.module('userService', ['authService']);
-angular.module('user', ['userService']);
+angular.module('user', ['authService']);
 
 /* register the application and inject all the necessary dependencies */
 var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'user'])
