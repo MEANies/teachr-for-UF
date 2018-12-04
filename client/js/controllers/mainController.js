@@ -1,13 +1,15 @@
 angular.module('directoryApp')
-	.controller('MainController', function(User, Auth, $location, $route,$rootScope) {
+	.controller('MainController', function(User, Auth, $location, $state, $route,$rootScope) {
 		var vm = this;
 		console.log('debug: mainctrl')
 		
 		
 		vm.logout = function() {
 			User.logout();
+			vm.isLoggedIn = false;
 			console.log('logged out suc!')
-			$state.go('home');
+			$state.go('signin');
+			//$rootScope.$emit('userLoggedOutSuccess', {message: "bye"});
 		};
 
 		vm.isLoggedIn = false;
@@ -22,6 +24,12 @@ angular.module('directoryApp')
 				vm.logout();
 			}
 		});
+
+		// $rootScope.$on('userLoggedOutSuccess', function() {
+		// 	console.log('called logout')
+			
+		// });
+
 
 		if(User.loginStatus()) {
 			vm.isLoggedIn = true;
