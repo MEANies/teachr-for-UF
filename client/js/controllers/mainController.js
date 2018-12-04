@@ -12,7 +12,7 @@ angular.module('directoryApp')
 
 		vm.isLoggedIn = false;
 		//when user changes the routes, check if user is logged in
-		$rootScope.$on('$routeChangeStart', function() {
+		$rootScope.$on('userLoggedInSuccess', function() {
 			console.log('called')
 			if(User.loginStatus()) {
 				console.log('user just logged in')

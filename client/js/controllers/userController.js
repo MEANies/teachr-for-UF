@@ -1,6 +1,6 @@
 angular.module('user')
-	.controller('UserController', ['$scope', '$state', '$route','$location','User', '$uibModalInstance',
-		function ($scope, $state, $route, $location, User, $uibModalInstance) {
+	.controller('UserController', ['$scope', '$state', '$route','$location','User', '$uibModalInstance', '$rootScope',
+		function ($scope, $state, $route, $location, User, $uibModalInstance, $rootScope) {
 
 			//using 'this' instead of 'scope', need to use Controller as vm in views or ui-routers
 			var vm = this;
@@ -59,6 +59,7 @@ angular.module('user')
 							// TODO notify the user that they logged in
 							// vm.alerts.push({ type: 'success', msg: 'Welcome, ' + vm.loginData.username + '!'});
 							// send the user to the home page
+							$rootScope.$emit('userLoggedInSuccess', {message: "Hello from login"});
 							$uibModalInstance.dismiss('home');
 							
 
