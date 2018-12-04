@@ -27,15 +27,15 @@ var listingSchema = new Schema({
   building_code: {
     type: String,
   },
-  office_hours: {
-    S: [String],
-    M: [String],
-    T: [String],
-    W: [String],
-    R: [String],
-    F: [String],
-    Su: [String],
-  },
+  office_hours: [{
+    office_meetDays: {type: [String]},
+    office_meetTimeBegin:{type: String},
+    office_meetTimeEnd:{type: String},
+    office_meetPeriodBegin:{type: Number},
+    office_meetPeriodEnd:{type: Number},
+    office_instructor:{type: String},
+    office_locationCommonName:{type: String},
+  }],
   // created_at: Date,
   // updated_at: Date
 });
