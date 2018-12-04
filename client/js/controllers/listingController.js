@@ -1,9 +1,9 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations','$uibModalInstance',
-  function($scope, Listings, $uibModalInstance) {
+  function($scope, Listings, Locations, $uibModalInstance) {
 
     $scope.cancel = function () {
       console.log("Debug: Search Modal Canceled");
-      $uibModalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('home');
     };
 
     /* Get all the listings, then bind it to the scope */
