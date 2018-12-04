@@ -22,10 +22,11 @@ angular.module('user')
 				}		
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
-					console.log(response.data);
+					// console.log(response.data);
 					//consider using $location instead of windows
 					//$location.path('/home');
 					$state.go('signin');
+					vm.cancel();
 				}, function (err) {
 					if (err.status !== 200) {
 						vm.inputError = true;
@@ -48,7 +49,8 @@ angular.module('user')
 					.then(
 						function (res) {
 							//consider using $location.path
-							window.location.href = "/home.html";
+							// TODO notify the user that they logged in
+							$state.go('home');
 						}, function (err) {
 							if (err.status !== 200) {
 								console.log(err.status);
