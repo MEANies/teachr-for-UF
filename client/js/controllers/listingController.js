@@ -37,16 +37,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.entry = undefined;
     };
 
-    // $scope.updateListing = function(index) {
-    //   Listings.put($scope.entry)
-    //   .then(function(res){
-    //     $scope.listings[index] = (res.data);
-    //     $scope.entry = undefined;
-    //   })
-    //   .catch(function(err){
-    //     console.log(err);
-    //   })
-    // }
+    $scope.updateListing = function(index) {
+      Listings.put($scope.entry)
+      .then(function(res){
+        $scope.listings[index] = (res.data);
+        $scope.entry = undefined;
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    }
 
     $scope.deleteListing = function(listing) {
 	   /**
