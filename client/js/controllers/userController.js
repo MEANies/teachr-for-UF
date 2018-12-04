@@ -4,6 +4,7 @@ angular.module('user')
 
 			//using 'this' instead of 'scope', need to use Controller as vm in views or ui-routers
 			var vm = this;
+			vm.alerts = [];
 			vm.userForm = 'registerForm';
 			vm.cancel = function () {
 				$uibModalInstance.dismiss('home');
@@ -41,14 +42,13 @@ angular.module('user')
 					vm.formError = true;
 					return;
 				}
-				console.log("Debug: vm.login 1");
 				//call methods inside userService
 				User.login(vm.loginData)
 					.then(
 						function (res) {
 
 							// TODO notify the user that they logged in
-
+							// vm.alerts.push({ type: 'success', msg: 'Welcome, ' + vm.loginData.username + '!'});
 							// send the user to the home page
 							$uibModalInstance.dismiss('home');
 
