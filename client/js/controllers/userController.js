@@ -1,6 +1,6 @@
 angular.module('user')
-	.controller('UserController', ['$scope', '$state', 'User', '$uibModalInstance',
-		function ($scope, $state, User, $uibModalInstance) {
+	.controller('UserController', ['$scope', '$state', '$route','$location','User', '$uibModalInstance',
+		function ($scope, $state, $route, $location, User, $uibModalInstance) {
 
 			//using 'this' instead of 'scope', need to use Controller as vm in views or ui-routers
 			var vm = this;
@@ -60,6 +60,7 @@ angular.module('user')
 
 							// send the user to the home page
 							$uibModalInstance.dismiss('home');
+							
 
 						}, function (err) {
 							if (err.status !== 200) {

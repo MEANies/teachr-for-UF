@@ -3,16 +3,19 @@ angular.module('authService')
     .factory('Auth', function ($window) {
         // var baseURL = window.location.protocol + '//' + window.location.host;
         var authenToken = {};
+        //console.log(authenToken.getRole)
 
         authenToken.setToken = function (token) {
+            console.log('settoken: ', token)
             $window.localStorage.setItem('token', token);
         };
 
         authenToken.setRole = function (role) {
             $window.localStorage.setItem('role', role);
-        }
+        };
         //remove user's authentication when the user closes the browser
         authenToken.deleteToken = function () {
+            console.log('token deleted')
             $window.localStorage.removeItem('token');
         };
 
@@ -27,7 +30,7 @@ angular.module('authService')
 
         authenToken.getRole = function () {
             $window.localStorage.getItem('role');
-        }
+        };
 
         return authenToken;
     })
