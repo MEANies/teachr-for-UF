@@ -12,7 +12,9 @@ angular.module('user')
                 });
             },
             login: function (data) {
+                console.log('Debug: User.login');
                 return $http.post('/api/auth/authorize', data).then(function (data) {
+                    console.log('Debug: User.login.response');
                     Auth.setToken(data.data.token);
                     Auth.setRole(data.data);
                     return data;

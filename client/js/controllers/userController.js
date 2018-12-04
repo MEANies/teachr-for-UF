@@ -6,7 +6,7 @@ angular.module('user')
 			var vm = this;
 			vm.userForm = 'registerForm';
 			vm.cancel = function () {
-				$uibModalInstance.dismiss('cancel');
+				$uibModalInstance.dismiss('home');
 			}
 			//Function to register users
 			vm.register = function () {
@@ -19,14 +19,14 @@ angular.module('user')
 					vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.role == '') {
 					vm.formError = true;
 					return;
-				}		
+				}
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
 					// console.log(response.data);
 					//consider using $location instead of windows
 					//$location.path('/home');
-					$state.go('signin');
-					vm.cancel();
+					$uibModalInstance.dismiss('signin');
+					
 				}, function (err) {
 					if (err.status !== 200) {
 						vm.inputError = true;
@@ -43,11 +43,13 @@ angular.module('user')
 					vm.formError = true;
 					return;
 				}
-
+				console.log("Debug: vm.login 1");
 				//call methods inside userService
 				User.login(user.loginData)
 					.then(
 						function (res) {
+							console.log("Debug: vm.login 2");
+
 							//consider using $location.path
 							// TODO notify the user that they logged in
 							$state.go('home');

@@ -34,8 +34,8 @@ angular.module('directoryApp')
 
     modalInstance.result.then(function () {
       // Value submitted
-    }, function () {
+    }, function (path) {
       // Modal dismissed. 
-      $state.go('home');
+      $state.go(path);
     })
   })
