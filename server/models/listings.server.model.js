@@ -27,6 +27,15 @@ var listingSchema = new Schema({
   building_code: {
     type: String,
   },
+  office_hours: {
+    S: [String],
+    M: [String],
+    T: [String],
+    W: [String],
+    R: [String],
+    F: [String],
+    Su: [String],
+  },
   // created_at: Date,
   // updated_at: Date
 });
