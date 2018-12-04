@@ -1,8 +1,7 @@
 /* register the modules the application depends upon here*/
 angular.module('listings', ['ngAnimate', 'ui.bootstrap', 'ui.router']);
 angular.module('authService', []);
-angular.module('userService', ['authService']);
-angular.module('user', ['userService']);
+angular.module('user', ['authService']);
 
 /* register the application and inject all the necessary dependencies */
 var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'user'])
@@ -12,9 +11,7 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ui.bootstrap
         // Classical routes naming
         $stateProvider
             .state('home', {
-                url: '/home',
-                templateUrl: 'index.html',
-                controller: 'mapController'
+                url: '/home'
             })
 
             .state('edit', {
