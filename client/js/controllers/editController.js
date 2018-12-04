@@ -16,10 +16,15 @@ angular.module('directoryApp').controller('EditController',
     modalInstance.result.then(function () {
       // Value submitted
       console.log("Debug: Edit Modal Closed")
-    }, function () {
+    }, function (path) {
       // Modal dismissed. 
       console.log("Debug: Edit Modal Dismissed")
-      $state.go('home');
+      if (path == 'backdrop click') {
+        $state.go('home');
+      }
+      else {
+        $state.go(path);
+      }
 
     })
   });
@@ -33,6 +38,6 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
 
   $ctrl.cancel = function () {
     console.log("Debug: Edit Modal Canceled");
-    $uibModalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('home');
   };
 });

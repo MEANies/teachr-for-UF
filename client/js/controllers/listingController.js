@@ -1,9 +1,9 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings', '$uibModalInstance',
-  function($scope, Listings, $uibModalInstance) {
+angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations','$uibModalInstance',
+  function($scope, Listings, Locations, $uibModalInstance) {
 
     $scope.cancel = function () {
       console.log("Debug: Search Modal Canceled");
-      $uibModalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('home');
     };
 
     /* Get all the listings, then bind it to the scope */
@@ -77,27 +77,24 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     $scope.findLocation = function(listing){
       var index = $scope.listings.indexOf(listing);
-      if (index != -1 && $scope.listings[index].building_code != "")
+      var bcode = $scope.listings[index].building_code;
+      if (index != -1 && bcode != "")
       {
-          var staticUrl = 'https://campusmap.ufl.edu/library/cmapjson/search.json';
-
-          $.getJSON(staticUrl, function(data) {
-            console.log("This is an example of a static JSON file being served by a web server.")
-            console.log(data);
-            
-            for (var i = 0; i < data.length(); i++) {
-              if (data[i].ID == $scope.listings[index].building_code){
-                $scope.mapLat = data[i].LAT;
-                $scope.mapLong = data[i].LON;
-              }
+          for (var i = 0; i < Locations.data; i++) {
+            if(bcode == Locations.data[i].ID){
+              $scope.mapLat = Locations.data[i].LAT;
+              $scope.mapLong = Locations.data[i].LON;
+              console.log(Locations.data[i].LAT);
+              console.log(Locations.data[i].LON);
             }
-          });
+          }
       }
       else{
         throw err;
       }
       
     }
+
 // TODO
     $scope.starListing = function(listing) {
       var index_previous = $scope.listings.indexOf(listing);
