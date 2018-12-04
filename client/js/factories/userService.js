@@ -19,6 +19,8 @@ angular.module('user')
 					Auth.setToken(data.data.token);
 					console.log('user role: ', data.data.role)
 					Auth.setRole(data.data.role);
+					let role = Auth.getRole();
+					console.log('UserService getrole: ', role)
 					return data;
 				});
 			},

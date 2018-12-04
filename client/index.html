@@ -22,11 +22,11 @@
         <li><a href="#">My Courses</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="edit" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
+        <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
         <li><a ui-sref="search" data-toggle="modal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><a ui-sref="signup" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a ui-sref="signin" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a ui-sref="logout" ng-click="vm.logout()" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a ui-sref="signin" ng-click="vm.logout()" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </nav>
