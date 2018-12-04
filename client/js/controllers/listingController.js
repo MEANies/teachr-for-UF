@@ -1,5 +1,10 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations',
+angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations','$uibModalInstance',
   function($scope, Listings, $uibModalInstance) {
+
+    $scope.cancel = function () {
+      console.log("Debug: Search Modal Canceled");
+      $uibModalInstance.dismiss('cancel');
+    };
 
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
@@ -89,6 +94,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
       
     }
+
 // TODO
     $scope.starListing = function(listing) {
       var index_previous = $scope.listings.indexOf(listing);

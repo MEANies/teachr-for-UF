@@ -1,4 +1,4 @@
-angular.module('listings', []).factory('Listings', function($http) {
+angular.module('listings').factory('Listings', function($http) {
   // var baseURL = window.location.protocol + '//' + window.location.host;
   var methods = {
     getAll: function() {
@@ -9,9 +9,9 @@ angular.module('listings', []).factory('Listings', function($http) {
     return $http.post('./api/listings', listing);
     }, 
 
-    // update: function(listing) {
-    //   return $http.put('./api/listings', listing);
-    // },
+    update: function(listing) {
+      return $http.put('./api/listings', listing);
+    },
 
     delete: function(id) {
      /**TODO
