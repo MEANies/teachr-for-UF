@@ -16,7 +16,12 @@ angular.module('directoryApp')
       // Value submitted
     }, function (path) {
       // Modal dismissed. 
-      $state.go(path);
+      if (path == 'backdrop click') {
+        $state.go('home');
+      }
+      else {
+        $state.go(path);
+      }
     })
   })
   .controller('SignupController', function ($rootScope, $uibModal, $state, $stateParams, $window) {
@@ -36,6 +41,11 @@ angular.module('directoryApp')
       // Value submitted
     }, function (path) {
       // Modal dismissed. 
-      $state.go(path);
+      if (path == 'backdrop click') {
+        $state.go('home');
+      }
+      else {
+        $state.go(path);
+      }
     })
   })
