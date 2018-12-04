@@ -13,34 +13,6 @@
   trackUserLocation: true
 }));
 
-      // var geojson = {
-        //     type: 'FeatureCollection',
-        //     features: [{
-        //       type: 'Feature',
-        //       geometry: {
-        //         type: 'Point',
-        //         coordinates: [-82.34435, 29.64831]
-        //       },
-        //       properties: {
-        //         title: 'CSE',
-        //         description: 'Office Hours Currently Being Held:'
-        //       }
-        //     }]
-        //   };
-        // map.addLayer({
-        //     id: "marker",
-        //     type: "symbol",
-        //     source: {
-        //       type: "geojson",
-        //       data: {
-        //         type: "FeatureCollection",
-        //         features: [{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [long, lat] } }]
-        //       }
-        //     },
-        //     layout: {
-        //       "icon-image": "custom-marker",
-        //     }
-        //   });
         geojson.features.forEach(function (marker) {
 
             // create a HTML element for each feature

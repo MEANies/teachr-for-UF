@@ -1,4 +1,3 @@
-
 var geojson = {
     type: 'FeatureCollection',
     features: [{

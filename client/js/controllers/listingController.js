@@ -1,4 +1,4 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations'
+angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations',
   function($scope, Listings, $uibModalInstance) {
 
     /* Get all the listings, then bind it to the scope */
