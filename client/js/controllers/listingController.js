@@ -89,6 +89,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
       
     }
+
 // TODO
     $scope.starListing = function(listing) {
       var index_previous = $scope.listings.indexOf(listing);
