@@ -13,7 +13,8 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ui.bootstrap
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: 'index.html'
+                templateUrl: 'index.html',
+                controller: 'mapController'
             })
 
             .state('edit', {
