@@ -61,7 +61,6 @@ angular.module('user')
 							// send the user to the home page
 							$rootScope.$emit('userLoggedInSuccess', {message: "Hello from login"});
 							$uibModalInstance.dismiss('home');
-							
 
 						}, function (err) {
 							if (err.status !== 200) {

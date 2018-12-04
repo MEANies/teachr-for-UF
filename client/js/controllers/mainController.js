@@ -7,7 +7,7 @@ angular.module('directoryApp')
 		vm.logout = function() {
 			User.logout();
 			console.log('logged out suc!')
-			$location.path('/')
+			$state.go('home');
 		};
 
 		vm.isLoggedIn = false;
