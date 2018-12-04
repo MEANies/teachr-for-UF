@@ -33,20 +33,62 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
   var $ctrl = this;
 
   $ctrl.periods = [
-    '(1) 7:25 AM - 8:15 AM',
-    '(2) 8:30 AM - 9:20 AM',
-    '(3) 9:35 AM - 10:25 AM',
-    '(4) 10:40 AM - 11:30 AM',
-    '(5) 11:45 AM - 12:35 PM',
-    '(6) 12:50 PM - 1:40 PM',
-    '(7) 1:55 PM - 2:45 PM',
-    '(8) 3:00 PM - 3:50 PM',
-    '(9) 4:05 PM - 4:55 PM',
-    '(10) 5:10 PM - 6:00 PM',
-    '(11) 6:15 PM - 7:05 PM',
-    '(E1) 7:20 PM - 8:10 PM',
-    '(E2) 8:20 PM - 9:10 PM',
-    '(E3) 9:20 PM - 10:10 PM'
+    {
+      time: '(1) 7:25 AM - 8:15 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(2) 8:30 AM - 9:20 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(3) 9:35 AM - 10:25 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(4) 10:40 AM - 11:30 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(5) 11:45 AM - 12:35 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(6) 12:50 PM - 1:40 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(7) 1:55 PM - 2:45 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(8) 3:00 PM - 3:50 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(9) 4:05 PM - 4:55 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(10) 5:10 PM - 6:00 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(11) 6:15 PM - 7:05 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E1) 7:20 PM - 8:10 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E2) 8:20 PM - 9:10 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E3) 9:20 PM - 10:10 PM',
+      days: new Array(5)
+    }
   ];
 
   $ctrl.ok = function () {
@@ -101,31 +143,38 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     }
   ];
 
-  officeHours = [
+  $ctrl.officeHours = [
     {
-      day: 'Monday',
+      day: 0,
       period: [7, 8]
     },
     {
-      day: 'Tuesday',
+      day: 1,
       period: [8]
     },
     {
-      day: 'Wednesday',
+      day: 2,
       period: [5]
     },
     {
-      day: 'Friday',
+      day: 4,
       period: [8]
     },
   ]
 
-  $ctrl.localOfficeHours = [];
-  $ctrl.formatOfficeHours = function() {
-    
+  $ctrl.formatOfficeHours = function () {
+    console.log("Debug: Format");
+    $ctrl.officeHours.forEach(function (officeHours) {
+      for (let i = 0; i < officeHours.period.length; i++) {
+        let period = officeHours.period[i];
+        let day = $ctrl.periods[period];
+        $ctrl.periods[period].days[day] = true;
+      }
+    })
   }
+  $ctrl.formatOfficeHours();
 
-  $ctrl.togglePeriod = function(target) {
+  $ctrl.togglePeriod = function() {
     // When clicked, should toggle color of the entry
     // if (target.style.background != 'blue')
     //   target.style.background = 'blue';
@@ -137,11 +186,11 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
 
   }
 
-  User.getAdminCourses().then(function(response) {
-    $ctrl.courses = response.data;
-    $ctrl.courses.forEach(course => {
-      // TODO
-    });
-  }
-  )
+  // User.getAdminCourses().then(function(response) {
+  //   $ctrl.courses = response.data;
+  //   $ctrl.courses.forEach(course => {
+  //     // TODO
+  //   });
+  // }
+  // )
 });

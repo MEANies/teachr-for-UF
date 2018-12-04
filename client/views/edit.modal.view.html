@@ -22,7 +22,8 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <div ng-repeat="course in $ctrl.courses track by $index">
-                                    <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}} {{course.name}}</a></label>
+                                    <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
+                                            {{course.name}}</a></label>
                                     <div id="{{$index}}" class="collapse">
                                         <table class="table table-bordered">
                                             <tr>
@@ -35,10 +36,10 @@
                                             </tr>
                                             <tr ng-repeat="period in $ctrl.periods">
                                                 <td>
-                                                    {{period}}
+                                                    {{period.time}}
                                                 </td>
-                                                <td ng-repeat="" ng-click="togglePeriod()">
-                                                    
+                                                <td ng-repeat="day in period.days track by $index" ng-click="" ng-class="{active: (true)}">
+
                                                 </td>
                                             </tr>
                                         </table>
