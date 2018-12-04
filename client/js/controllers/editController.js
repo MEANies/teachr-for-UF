@@ -4,9 +4,7 @@ function($rootScope, $uibModal, $state, $stateParams, $window) {
     var modalInstance = $uibModal.open({
         windowClass: 'modal-center',
         templateUrl: 'views/edit.modal.view.html',
-        controller: function(item) {
-          this.item = item;
-        },
+        controller: 'EditModalInstanceController',
         controllerAs: '$ctrl',
         resolve: {
           item: function () {
@@ -27,4 +25,20 @@ function($rootScope, $uibModal, $state, $stateParams, $window) {
           $window.history.back();
         }
       })
-})
+});
+
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, items) {
+  var $ctrl = this;
+  $ctrl.items = items;
+  $ctrl.selected = {
+    item: $ctrl.items[0]
+  };
+
+  $ctrl.ok = function () {
+    $uibModalInstance.close($ctrl.selected.item);
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
