@@ -14,6 +14,18 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      read: {
+        method: 'GET'
+      },
+      list: {
+        method: 'GET'
+      },
+      create: {
+        method: 'POST'
+      },
+      delete: {
+        method: 'DELETE'
       }
     });
   }
