@@ -26,7 +26,7 @@ angular.module('user')
 					//consider using $location instead of windows
 					//$location.path('/home');
 					$uibModalInstance.dismiss('signin');
-					
+
 				}, function (err) {
 					if (err.status !== 200) {
 						vm.inputError = true;
@@ -35,24 +35,26 @@ angular.module('user')
 			};
 
 
-			vm.login = function (loginData) {
+			vm.login = function () {
 				vm.formError = false;
 				vm.inputError = false;
 				//if user is missing any field
 				if (vm.loginData.username === undefined || vm.loginData.password == undefined || vm.loginData.username == "" || vm.loginData.password == "") {
 					vm.formError = true;
+					console.log("Debug: vm.login.invalid");
+
 					return;
 				}
 				console.log("Debug: vm.login 1");
 				//call methods inside userService
-				User.login(user.loginData)
+				User.login(vm.loginData)
 					.then(
 						function (res) {
 							console.log("Debug: vm.login 2");
 
 							//consider using $location.path
 							// TODO notify the user that they logged in
-							$state.go('home');
+							$uibModalInstance.dismiss('home');
 						}, function (err) {
 							if (err.status !== 200) {
 								console.log(err.status);
