@@ -54,6 +54,12 @@
                         </div>
                     </div>
                 </div>
+                <div ng-if="vm.inputError" class="text-center alert alert-warning" role="alert">
+                    <p class="help-block error-text">Wrong username/password!</p>
+                </div>
+                <div ng-if="vm.formError" class="text-center alert alert-warning" role="alert">
+                    <p class="help-block error-text">Missing fields!</p>
+                </div>
             </div>
         </fieldset>
     </form>

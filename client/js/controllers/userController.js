@@ -14,13 +14,22 @@ angular.module('user')
 				console.log("Debug: vm.register 1");
 				vm.formError = false;
 				vm.inputError = false;
-				//call methods inside userService 
+				
+				vm.emailError = false;
+				//check email format
+				if(/@ufl.edu\s*$/.test(vm.registerData.email)) {
+					vm.emailError = false;
+				} else {
+					vm.emailError = true;
+				}
 
+				//call methods inside userService 
 				if (vm.registerData.username === undefined || vm.registerData.password === undefined || vm.registerData.email === undefined || vm.registerData.role === undefined ||
 					vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.role == '') {
 					vm.formError = true;
 					return;
 				}
+
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
 

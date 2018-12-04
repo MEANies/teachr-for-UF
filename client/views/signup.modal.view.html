@@ -11,39 +11,17 @@
                     <label for="email">UFL Email <span style="color:red; margin: auto">*</span></label>
                     <input type="email" id="email" name="email" class="form-control" ng-model="vm.registerData.email"
                         placeholder="example@ufl.edu" lowercase required>
-                    <div ng-messages="vm.userForm.email.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Email address is required.</p>
-                        <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
-                    </div>
                 </div>
                 <div class="form-group" show-er rors>
                     <label for="username">Username <span style="color:red; margin: auto">*</span></label>
                     <input type="text" id="username" name="username" class="form-control" ng-model="vm.registerData.username"
-                        ng-pattern="vm.usernameRegex" placeholder="Username" lowercase required>
-                    <div ng-messages="vm.userForm.username.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Username is required.</p>
-                        <p class="help-block error-text" ng-message="pattern">Please enter a valid
-                            username: 3+ characters
-                            long, non restricted word, characters "_-.", no consecutive dots, does not
-                            begin or end with
-                            dots, letters a-z and numbers 0-9.</p>
-                    </div>
+                     placeholder="Username" lowercase required>
                 </div>
                 <div class="form-group" show-errors>
                     <label for="password">Password <span style="color:red; margin: auto">*</span></label>
                     <input type="password" id="password" name="password" class="form-control" ng-model="vm.registerData.password"
                         placeholder="Password" uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="outsideClick"
-                        password-validator required>
-                    <div ng-messages="vm.userForm.password.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Password is required.</p>
-                        <div ng-repeat="passwordError in passwordErrors">
-                            <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" ng-show="!vm.userForm.password.$error.required">
-                    <label>Password Requirements</label>
-                    <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+                        required>
                 </div>
                 <!--Role-->
                 <div class="form-group" show-errors>
@@ -51,12 +29,13 @@
                     &nbsp; &nbsp;
                     <div class='form-group'>
                         <input type="radio" id="radioButton" name="gender" ng-model="vm.registerData.role" Value="user">
+                    </br>
                         &nbsp;Student
                         &nbsp;
+                    </br>
                         <input type="radio" id="radio" name="gender" ng-model="vm.registerData.role" Value="instructor">
                         &nbsp;Instructor/Researcher/Staff
                         &nbsp;
-
                     </div>
                     <!-- <div ng-messages="vm.userForm.gender.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">Gender is required.</p>
@@ -67,9 +46,21 @@
                     &nbsp; or&nbsp;
                     <a ui-sref="signin" ng-click="$dismiss('cancel')" class="show-signup">Sign in</a>
                 </div>
+            </br>
+                <div ng-if="vm.formError" class="alert alert-warning" role="alert">
+                    <p class="help-block error-text">Missing fields!</p>
+                </div>
+                <div ng-if="vm.emailError" class="alert alert-warning" role="alert">
+                    <p class="help-block error-text">Please use UFL email!</p>
+                </div>
+                <div ng-if="vm.inputError" class="alert alert-warning" role="alert">
+                    <p class="help-block error-text">Username/Email already been used!</p>
+                </div>
             </fieldset>
         </form>
+        
     </div>
+    
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.cancel()" data-dismiss="modal">Close</button>
