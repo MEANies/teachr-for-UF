@@ -1,6 +1,6 @@
 angular.module('Listings').factory('Listings', function () {
-    var location = {
-    data:[
+    var locations = {
+        data: [
             {
                 "ID": "0001",
                 "LAT": "29.64898",
