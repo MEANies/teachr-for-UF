@@ -1,4 +1,4 @@
-angular.module('courses').factory('Locations', function () {
+angular.module('Listings').factory('Listings', function () {
     var location = {
     data:[
             {
