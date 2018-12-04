@@ -92,4 +92,6 @@ li a:hover {
 #cell:hover {
   background-color: lightskyblue;
 }
-
+.table>tbody>tr>td.active {
+  background-color: blue !important;
+}

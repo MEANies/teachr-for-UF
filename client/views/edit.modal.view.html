@@ -38,7 +38,8 @@
                                                 <td>
                                                     {{period.time}}
                                                 </td>
-                                                <td ng-repeat="day in period.days track by $index" ng-click="" ng-class="{active: (true)}">
+                                                <td id="cell" ng-repeat="day in period.days track by $index"
+                                                    ng-click="$ctrl.togglePeriod($parent.$index, $index)" ng-class="{active: ($ctrl.checkCellState($parent.$index, $index) == true)}">
 
                                                 </td>
                                             </tr>

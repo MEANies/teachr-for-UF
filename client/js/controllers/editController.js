@@ -102,87 +102,156 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
 
   $ctrl.courses = [
     {
-      code: 'COP 4600', 
-      name: 'Operating Systems', 
-      department: {}, 
-      instructor_names: {},
-      description: {},
-      building: {},
-      building_code: {},
-      office_hours: [{
-        office_meetDays: {},
-        office_meetTimeBegin:{},
-        office_meetTimeEnd:{},
-        office_meetPeriodBegin:{},
-        office_meetPeriodEnd:{},
-        office_instructor:{},
-        office_locationCommonName:{},
-      }]
-      // created_at: Date,
-      // updated_at: Date
+      "code": "CEN3031",
+      "name": "Introduction to Software Engineering",
+      "department": "Computer & Information Science & Engineering",
+      "description": "Topics include software planning, specifications, coding, testing and maintenance. Gain experience in the team approach to large system development. (M)",
+      "building": "CAR",
+      "building_code": "0022",
+      "office_hours": [
+        {
+          "office_meetTimeBegin": "4:05 PM",
+          "office_meetTimeEnd": "4:55 PM",
+          "office_meetPeriodBegin": 9,
+          "office_meetPeriodEnd": 9,
+          "office_instructor": "Adeel",
+          "office_locationCommonName": "CSE",
+          "office_meetDays": [
+            "W"
+          ]
+        },
+        {
+          "office_meetTimeBegin": "9:35 AM",
+          "office_meetTimeEnd": "11:30 AM",
+          "office_meetPeriodBegin": 3,
+          "office_meetPeriodEnd": 4,
+          "office_instructor": "Pedro",
+          "office_locationCommonName": "CSE",
+          "office_meetDays": [
+            "M",
+            "W",
+            "F"
+          ]
+        }
+      ],
+      "instructor_names": [
+        "Philippa Brown"
+      ],
     },
     {
-      code: 'CEN 3031', 
-      name: 'Introduction to Software Engineering', 
-      department: {}, 
+      code: 'COP 4600',
+      name: 'Operating Systems',
+      department: {},
       instructor_names: {},
       description: {},
       building: {},
       building_code: {},
       office_hours: [{
         office_meetDays: {},
-        office_meetTimeBegin:{},
-        office_meetTimeEnd:{},
-        office_meetPeriodBegin:{},
-        office_meetPeriodEnd:{},
-        office_instructor:{},
-        office_locationCommonName:{},
+        office_meetTimeBegin: {},
+        office_meetTimeEnd: {},
+        office_meetPeriodBegin: {},
+        office_meetPeriodEnd: {},
+        office_instructor: {},
+        office_locationCommonName: {},
       }]
       // created_at: Date,
       // updated_at: Date
     }
   ];
 
-  $ctrl.officeHours = [
-    {
-      day: 0,
-      period: [7, 8]
-    },
-    {
-      day: 1,
-      period: [8]
-    },
-    {
-      day: 2,
-      period: [5]
-    },
-    {
-      day: 4,
-      period: [8]
-    },
-  ]
+  $ctrl.localOfficeHours = [];
+
 
   $ctrl.formatOfficeHours = function () {
-    console.log("Debug: Format");
-    $ctrl.officeHours.forEach(function (officeHours) {
-      for (let i = 0; i < officeHours.period.length; i++) {
-        let period = officeHours.period[i];
-        let day = $ctrl.periods[period];
-        $ctrl.periods[period].days[day] = true;
-      }
-    })
   }
+
   $ctrl.formatOfficeHours();
 
-  $ctrl.togglePeriod = function() {
+  $ctrl.togglePeriod = function (parent, index) {
+
+    $ctrl.parentIndex = undefined;
+    $ctrl.currIndex = undefined;
+
+
+    for (let i = 0; i < $ctrl.localOfficeHours.length; i++) {
+      if ($ctrl.localOfficeHours[i].key == parent) {
+        $ctrl.parentIndex = i;
+        for (let j = 0; j < $ctrl.localOfficeHours[$ctrl.parentIndex].value.length; j++) {
+          if ($ctrl.localOfficeHours[$ctrl.parentIndex].value[j].key == index) {
+            $ctrl.currIndex = j;
+          }
+        }
+      }
+    }
     // When clicked, should toggle color of the entry
-    // if (target.style.background != 'blue')
-    //   target.style.background = 'blue';
-    // else target.style.background = 'white';
-    console.log("Debug: togglePeriod");
+    if ($ctrl.parentIndex == undefined) {
+      console.log('debug 1');
+      console.log($ctrl.localOfficeHours)
+      $ctrl.localOfficeHours.push({
+        key: parent,
+        value: []
+      })
+      for (let i = 0; i < $ctrl.localOfficeHours.length; i++) {
+        if ($ctrl.localOfficeHours[i].key == parent) {
+          $ctrl.localOfficeHours[i].value.push(
+            {
+              key: index,
+              value: true
+            }
+          )
+        }
+      }
+    }
+    else if ($ctrl.currIndex == undefined) {
+      console.log('debug 2');
+      console.log($ctrl.localOfficeHours)
+
+      $ctrl.localOfficeHours[$ctrl.parentIndex].value.push(
+        {
+          key: index,
+          value: true
+        }
+      );
+    }
+    else if (!$ctrl.localOfficeHours[$ctrl.parentIndex].value[$ctrl.currIndex].value) {
+      console.log('debug 3');
+      console.log($ctrl.localOfficeHours)
+
+      $ctrl.localOfficeHours[$ctrl.parentIndex].value[$ctrl.currIndex].value = true;
+    }
+    else {
+      console.log('debug 4');
+      console.log($ctrl.localOfficeHours)
+
+      $ctrl.localOfficeHours[$ctrl.parentIndex].value[$ctrl.currIndex].value = false;
+
+    }
   }
 
-  $ctrl.submitOfficeHours = function(newOfficeHours) {
+  $ctrl.checkCellState = function(parent,index) {
+
+    let parentIndex = undefined;
+    let currIndex = undefined;
+
+    for (let i = 0; i < $ctrl.localOfficeHours.length; i++) {
+      if ($ctrl.localOfficeHours[i].key == parent) {
+        parentIndex = i;
+        for (let j = 0; j < $ctrl.localOfficeHours[parentIndex].value.length; j++) {
+          if ($ctrl.localOfficeHours[parentIndex].value[j].key == index) {
+            currIndex = j;
+          }
+        }
+      }
+    }
+    // When clicked, should toggle color of the entry
+    if (parentIndex == undefined || currIndex == undefined || !$ctrl.localOfficeHours[parentIndex].value[currIndex].value)
+      return false;
+    else
+      return true;
+  }
+
+  $ctrl.submitOfficeHours = function (newOfficeHours) {
 
   }
 
