@@ -21,6 +21,7 @@ angular.module('user')
 					return;
 				}		
 				User.register(vm.registerData).then(function (response) {
+					console.log("Debug: vm.User.register")
 					console.log(response.data);
 					//consider using $location instead of windows
 					//$location.path('/home');

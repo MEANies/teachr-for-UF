@@ -8,6 +8,7 @@ angular.module('user')
             register: function (data) {
                 console.log("Debug: User.register");
                 return $http.post('/api/auth/create', data).then(function (data) {
+                    console.log('Debug: User.register.response');
                     Auth.setRole(data.data.role);
                 });
             },
