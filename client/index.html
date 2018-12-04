@@ -40,6 +40,26 @@
   <ui-view></ui-view>
 
   <div id="map"></div>
+  <style>
+  .marker {
+  background-image: url('mapbox_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+  .mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+  </style>
   <!-- Scripts -->
   <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -75,8 +95,8 @@
       var map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-        center: [-82.343468, 29.648609], // starting position [lng, lat]
-        zoom: 15  // starting zoom
+        center: [-82.34435, 29.64831], // starting position [lng, lat]
+        zoom: 16  // starting zoom
       });
       // Add geolocate control to the map.
       map.addControl(new mapboxgl.GeolocateControl({
@@ -85,6 +105,20 @@
         },
         trackUserLocation: true
       }));
+      var geojson = {
+          type: 'FeatureCollection',
+          features: [{
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-82.34435, 29.64831]
+            },
+            properties: {
+              title: 'CSE',
+              description: 'Building 1'
+            }
+          }]
+        };
       // map.addLayer({
       //     id: "marker",
       //     type: "symbol",
@@ -99,7 +133,17 @@
       //       "icon-image": "custom-marker",
       //     }
       //   });
-      
+      geojson.features.forEach(function (marker) {
+
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+              .setLngLat(marker.geometry.coordinates)
+              .addTo(map);
+          });
     </script>
   </div>
 </body>
