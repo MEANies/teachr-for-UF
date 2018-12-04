@@ -27,6 +27,9 @@ var listingSchema = new Schema({
   building_code: {
     type: String,
   },
+  office_hours: {
+    type: [[Number]],
+  }
   // created_at: Date,
   // updated_at: Date
 });

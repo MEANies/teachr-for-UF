@@ -1,4 +1,4 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
+angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations'
   function($scope, Listings, $uibModalInstance) {
 
     /* Get all the listings, then bind it to the scope */
@@ -32,16 +32,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.entry = undefined;
     };
 
-    // $scope.updateListing = function(index) {
-    //   Listings.put($scope.entry)
-    //   .then(function(res){
-    //     $scope.listings[index] = (res.data);
-    //     $scope.entry = undefined;
-    //   })
-    //   .catch(function(err){
-    //     console.log(err);
-    //   })
-    // }
+    $scope.updateListing = function(index) {
+      Listings.put($scope.entry)
+      .then(function(res){
+        $scope.listings[index] = (res.data);
+        $scope.entry = undefined;
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    }
 
     $scope.deleteListing = function(listing) {
 	   /**
@@ -72,21 +72,17 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     $scope.findLocation = function(listing){
       var index = $scope.listings.indexOf(listing);
-      if (index != -1 && $scope.listings[index].building_code != "")
+      var bcode = $scope.listings[index].building_code;
+      if (index != -1 && bcode != "")
       {
-          var staticUrl = 'https://campusmap.ufl.edu/library/cmapjson/search.json';
-
-          $.getJSON(staticUrl, function(data) {
-            console.log("This is an example of a static JSON file being served by a web server.")
-            console.log(data);
-            
-            for (var i = 0; i < data.length(); i++) {
-              if (data[i].ID == $scope.listings[index].building_code){
-                $scope.mapLat = data[i].LAT;
-                $scope.mapLong = data[i].LON;
-              }
+          for (var i = 0; i < Locations.data; i++) {
+            if(bcode == Locations.data[i].ID){
+              $scope.mapLat = Locations.data[i].LAT;
+              $scope.mapLong = Locations.data[i].LON;
+              console.log(Locations.data[i].LAT);
+              console.log(Locations.data[i].LON);
             }
-          });
+          }
       }
       else{
         throw err;

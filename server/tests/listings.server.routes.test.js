@@ -96,6 +96,28 @@ describe('Listings CRUD tests', function() {
       });
   });
 
+  it('should be able to update office hours', function(done) {
+    var updatedListing = {
+      code: 'CEN3031', 
+      name: 'Introduction to Software Engineering', 
+      department: 'Computer and Information Sciences',
+      instructor_names: 'Dr. Philippa Brown,Pedro G. Feijoo-Garcia',
+    };
+
+    agent.put('/api/listings/' + id)
+      .send(updatedListing)
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        should.exist(res.body._id);
+        res.body.name.should.equal('Introduction to Software Engineering');
+        res.body.code.should.equal('CEN3031');
+        res.body.department.should.equal('Computer and Information Sciences');
+        res.body.instructor_names[0].should.equal('Dr. Philippa Brown,Pedro G. Feijoo-Garcia');
+        done();
+      });
+  });
+
   it('should be able to delete a listing', function(done) {
     // console.log(id);
     agent.delete('/api/listings/' + id)
