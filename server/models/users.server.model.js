@@ -35,10 +35,7 @@ var usersSchema = new Schema({
     required: true
   },
   role: {
-		type: [{
-			type: String,
-			enum: ['user', 'instructor']
-		}],
+		type: String,
 		required: 'Please choose your role!'
   },
   created_at: {

@@ -2,10 +2,11 @@ angular.module('directoryApp')
 	.controller('MainController', function(User, Auth, $location, $state, $route,$rootScope) {
 		var vm = this;
 		console.log('debug: mainctrl')
-		
+		vm.isAdmin = false;
 		
 		vm.logout = function() {
 			User.logout();
+			vm.isAdmin = false;
 			vm.isLoggedIn = false;
 			console.log('logged out suc!')
 			$state.go('signin');
@@ -19,8 +20,12 @@ angular.module('directoryApp')
 			if(User.loginStatus()) {
 				console.log('user just logged in')
 				vm.isLoggedIn = true;
+				if(Auth.getRole() === 'instructor') {
+					vm.isAdmin = true;
+				}
 			} else {
 				vm.isLoggedIn = false;
+				vm.isAdmin = false;
 				vm.logout();
 			}
 		});
@@ -29,6 +34,9 @@ angular.module('directoryApp')
 		// 	console.log('called logout')
 			
 		// });
+		if(Auth.getRole() === 'instructor') {
+			vm.isAdmin = true;
+		}
 
 
 		if(User.loginStatus()) {
@@ -40,6 +48,6 @@ angular.module('directoryApp')
 		//log out user AKA delete token
 		
 
-
+		console.log('currentRole: ', Auth.getRole())
 		console.log('islogin ', vm.isLoggedIn)
 	})

@@ -29,7 +29,7 @@ angular.module('directoryApp').controller('EditController',
     })
   });
 
-angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance) {
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User) {
   var $ctrl = this;
 
   $ctrl.periods = [
