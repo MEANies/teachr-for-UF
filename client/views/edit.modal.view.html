@@ -11,7 +11,71 @@
              -->
     <form>
         <div id="accordion">
+                <div class="panel-group">
+                        <div class="panel panel-default" id="panel1">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">Edit Your Courses and Office Hours</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div ng-repeat="course in $ctrl.courses track by $index">
+                                            <label>{{course.code}} {{course.name}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             <div class="panel-group">
+                <div class="panel panel-default" id="panel2">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse2">Add a Research Position...</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <h4>
+                                    Research Position(s)
+                                </h4>
+                                <div id="research-pos-field">
+                                    <label for="researchArea">Area of Research</label>
+                                    <br>
+                                    <label for="researchHours">Required Hours Per Week</label>
+                                    <br>
+                                    <label for="researchLocation">Location</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default" id="panel3">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse3">Add Your Twitter Feed...</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$ctrl.cancel()" data-dismiss="modal">Close</button>
+</div>
+
+
+<!-- <div class="panel-group">
                 <div class="panel panel-default" id="panel1">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -91,48 +155,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel-group">
-                <div class="panel panel-default" id="panel2">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2">Add a Research Position...</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <h4>
-                                    Research Position(s)
-                                </h4>
-                                <div id="research-pos-field">
-                                    <label for="researchArea">Area of Research</label>
-                                    <br>
-                                    <label for="researchHours">Required Hours Per Week</label>
-                                    <br>
-                                    <label for="researchLocation">Location</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-group">
-                <div class="panel panel-default" id="panel3">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3">Add Your Twitter Feed...</a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                        <div class="panel-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="$ctrl.cancel()" data-dismiss="modal">Close</button>
-</div>
+            </div> -->
