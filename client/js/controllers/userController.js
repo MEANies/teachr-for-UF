@@ -22,9 +22,7 @@ angular.module('user')
 				}
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
-					// console.log(response.data);
-					//consider using $location instead of windows
-					//$location.path('/home');
+
 					$uibModalInstance.dismiss('signin');
 
 				}, function (err) {
@@ -41,8 +39,6 @@ angular.module('user')
 				//if user is missing any field
 				if (vm.loginData.username === undefined || vm.loginData.password == undefined || vm.loginData.username == "" || vm.loginData.password == "") {
 					vm.formError = true;
-					console.log("Debug: vm.login.invalid");
-
 					return;
 				}
 				console.log("Debug: vm.login 1");
@@ -50,11 +46,12 @@ angular.module('user')
 				User.login(vm.loginData)
 					.then(
 						function (res) {
-							console.log("Debug: vm.login 2");
 
-							//consider using $location.path
 							// TODO notify the user that they logged in
+
+							// send the user to the home page
 							$uibModalInstance.dismiss('home');
+
 						}, function (err) {
 							if (err.status !== 200) {
 								console.log(err.status);
