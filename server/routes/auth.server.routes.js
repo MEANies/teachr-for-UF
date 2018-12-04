@@ -141,7 +141,8 @@ router.post("/authorize", async (req, res, next) => {
                     role: user.role
                 })
             } else {
-                res.status(401).send("UNAUTHORIZED ACCESS: Incorrect password for username " + req.body.username + "!!!");
+                console.log('UNAUTHORIZED User: Incorrect password for username ' + req.body.username)
+                res.status(401).send('unauthorized');
             }
         })
     
