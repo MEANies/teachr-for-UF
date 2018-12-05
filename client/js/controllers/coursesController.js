@@ -10,6 +10,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     Listings.getAll().then(function(response) {
       console.log("debug");
       $scope.courses = response.data.courses;
+      $scope.admins = response.data.admins;
       console.log(response.data);
     }, function(error) {
       console.log('Unable to retrieve Courses:', error);
@@ -54,7 +55,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
         Delete the article using the Courses factory. If the removal is successful, 
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
-      var index = $scope.courses.indexOf(listing);
+      var index = $scope.Courses.indexOf(listing);
       if (index != -1) {
           Listings.delete($scope.courses[index]._id);
           $scope.Courses.splice(index, 1);
@@ -77,8 +78,8 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     };
 
     $scope.findLocation = function(listing){
-      var index = $scope.courses.indexOf(listing);
-      var bcode = $scope.courses[index].building_code;
+      var index = $scope.Courses.indexOf(listing);
+      var bcode = $scope.Courses[index].building_code;
       if (index != -1 && bcode != "")
       {
           for (var i = 0; i < Locations.data; i++) {
@@ -96,9 +97,17 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
       
     }
 
+    $scope.updateResult = function() {
+      Courses.getByCode($scope.search, 2188).then(function(res) {
+        $scope.courses = res.data;
+      }, function(err) {
+        console.log(err)
+      })
+    }
+
 // TODO
     $scope.starListing = function(listing) {
-      var index_previous = $scope.courses.indexOf(listing);
+      var index_previous = $scope.Courses.indexOf(listing);
 
       if(index != -1){
         //TODO: WIP
