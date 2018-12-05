@@ -1,5 +1,5 @@
 angular.module('directoryApp').controller('EditController',
-  function ($rootScope, $uibModal, $state, $stateParams, $window) {
+  function ($rootScope, $uibModal, $state, $stateParams, $window, User) {
 
     var modalInstance = $uibModal.open({
       windowClass: 'modal-center',
@@ -29,7 +29,7 @@ angular.module('directoryApp').controller('EditController',
     })
   });
 
-angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User) {
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User, $timeout) {
   var $ctrl = this;
 
   $ctrl.periods = [
@@ -242,4 +242,63 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
   //   });
   // }
   // )
+
+
+//get current info
+  $ctrl.getCurrentResearch = function() {
+    User.getResearch({ username: User.getUser() }).then(function(res) {
+      console.log('hello',res)
+      $ctrl.currentdetail = res.data.detail;
+      $ctrl.currenthour = res.data.hour;
+    })
+  }
+  
+
+  
+  
+  $ctrl.updateResearch = function() {
+    $ctrl.rscUpdateFail = false;
+    $ctrl.rscUpdateSuc = false;
+    let data = {
+      username: User.getUser(),
+      research: {
+        hour: $ctrl.hour,
+        detail: $ctrl.detail
+      }
+    }
+    User.updateResearch(data).then(function(res) {
+      console.log('success update')
+      $ctrl.rscUpdateSuc = true;
+      $uibModalInstance.dismiss('edit')
+    }, function(err) {
+      console.log(err)
+      $ctrl.rscUpdateFail = true;
+    });
+  }
+
+  $ctrl.getSocial = function() {
+    User.getSocial({username: User.getUser()}).then(function(res) {
+      $ctrl.currenttwitter = res.data.twitter
+      $ctrl.currentlinkedin = res.data.linkedin
+    })
+  }
+
+  //edit social media account
+  $ctrl.updateSocial = function() {
+    $ctrl.smUpdateFail = false;
+    $ctrl.smUpdateSuc = false;
+    let data = {
+      username: User.getUser(),
+      social: {
+        twitter: $ctrl.twitter,
+        linkedin: $ctrl.linkedin
+      }
+    };
+    User.updateSocial(data).then(function(res) {
+      $uibModalInstance.dismiss('edit')
+      $ctrl.smUpdateSuc=true;
+    }), function(err) {
+      $ctrl.smUpdateFail = true;
+    }
+  }
 });

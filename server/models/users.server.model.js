@@ -45,6 +45,26 @@ var usersSchema = new Schema({
   tempToken: {
     type: String,
     required: true
+  },
+  research: {
+    hour: {
+      type: Number,
+      default: 0
+    },
+    detail: {
+      type: String,
+      default: ''
+    }
+  },
+  social: {
+    twitter: {
+      type: String,
+      default: ''
+    },
+    linkedin: {
+      type: String,
+      default: ''
+    }
   }
 });
 
