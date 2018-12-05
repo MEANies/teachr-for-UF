@@ -35,8 +35,8 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ngRoute' ,'u
                 controller: 'SearchController'
             })
 
-            .state('search', {
-                url: '/details',
+            .state('details', {
+                url: '/:name',
                 controller: 'DetailsController'
             })
 

@@ -4,6 +4,8 @@ angular.module('directoryApp')
 		console.log('debug: mainctrl')
 		vm.isAdmin = false;
 		
+		vm.name = 'professorx';
+		
 		vm.logout = function() {
 			User.logout();
 			vm.isAdmin = false;

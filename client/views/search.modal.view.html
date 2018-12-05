@@ -23,11 +23,10 @@
 
                 <td>{{course.code}}</td>
                 <td>{{course.name}}</td>
-                <td><span ng-repeat="list in listing.instructor_names">{{list}}</span></td>
+                <td><a ng-repeat="list in listing.instructor_names" ui-sref="details.prof({name: list})">{{list}}</a></td>
                 <td>{{course.department}}</td>
                 <td>{{course.description}}</td>
-                <td>{{course.building}}<button ng-click="findLocation($index)">click me</button><span>{{mapLat}}
-                        {{mapLong}}</span></td>
+                <td>{{course.building}}<button ng-click="findLocation($index)">click me</button></td>
                 <!-- <td>
                               <h2>Update Listing</h2>
                               Code: <input type="text" ng-model="newListing.code" /><br />

@@ -53,11 +53,14 @@ angular.module('directoryApp')
     var modalInstance = $uibModal.open({
       windowClass: 'modal-center',
       templateUrl: 'views/professor.modal.view.html',
-      controller: 'DetailsInstanceController',
+      controller: function(name) {
+        this.name = name;
+        console.log(name);
+      },
       controllerAs: 'vm',
       resolve: {
-        item: function () {
-          return $stateParams.id
+        name: function () {
+          return $stateParams.name
         }
       }
     })
