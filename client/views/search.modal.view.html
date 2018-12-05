@@ -19,7 +19,7 @@
                 <th>Save</th>
                 <th>Remove</th>
             </tr>
-            <tr ng-repeat="listing in listings track by $index">
+            <tr ng-repeat="listing in listings | filter: search | orderBy: 'listing.code' track by $index">
 
                 <td>{{listing.code}}</td>
                 <td>{{listing.name}}</td>
