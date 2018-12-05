@@ -81,8 +81,11 @@ var usersSchema = new Schema({
       ]
     }
   ],
-  courses: [String]
+  courses: [String],
 
+  saved_courses: {
+    type: [String],
+  },
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
