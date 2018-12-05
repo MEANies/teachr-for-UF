@@ -104,6 +104,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
       console.log(index)
       var bcode = $scope.courses[index].sections[0].meetTimes[0].meetBldgCode;
       console.log(bcode)
+      $uibModalInstance.dismiss('home');
       if (index != -1 && bcode != "")
       { 
           console.log('hello')
