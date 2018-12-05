@@ -38,8 +38,8 @@
                                                 <td>
                                                     {{period.time}}
                                                 </td>
-                                                <td id="cell" ng-repeat="day in period.days track by $index"
-                                                    ng-click="$ctrl.togglePeriod($parent.$index, $index)" ng-class="{active: ($ctrl.checkCellState($parent.$index, $index) == true)}">
+                                                <td id="cell" ng-repeat="day in period.days track by $index" ng-click="$ctrl.togglePeriod($parent.$index, $index)"
+                                                    ng-class="{active: ($ctrl.checkCellState($parent.$index, $index) == true)}">
 
                                                 </td>
                                             </tr>
@@ -51,64 +51,68 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-group">
-                <div class="panel panel-default" id="panel2">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2" ng-click="$ctrl.getCurrentResearch()">Add a Research Position...</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <!-- <h4>
-                                    Research Position(s)
-                                </h4> -->
-                                <div id="research-pos-field">
-                                    <div class="row">
-                                        <h4> Research Position(s)</h4>
-                                        <br>
-                                        <label for="researchArea">Details of Research</label>
-                                        <div ng-bind="$ctrl.currentdetail"></div>
-                                        <input type="text" ng-model="$ctrl.detail" class="form-control">
-                                        <br>
-                                        <label for="researchHours">Required Hours Per Week</label>
-                                        <div ng-bind="$ctrl.currenthour"></div>
-                                        <input type="number" ng-model="$ctrl.hour" class="form-control">
-                                        <button class="btn btn-info form-control" role="button" ng-click="$ctrl.updateResearch()">Update</button>
-                                        <br>
-                                        <div ng-if="$ctrl.rscUpdateFail" class="alert alert-warning">Unable to update at this time!</div>
-                                        <div ng-if="$ctrl.rscUpdateSuc" class="alert alert-warning">Success!</div>
-                                    </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default" id="panel2">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2" ng-click="$ctrl.getCurrentResearch()">Add a
+                            Research
+                            Position...</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <!-- <h4>
+                                                Research Position(s)
+                                            </h4> -->
+                            <div id="research-pos-field">
+                                <div class="row">
+                                    <h4> Research Position(s)</h4>
+                                    <br>
+                                    <label for="researchArea">Details of Research</label>
+                                    <div ng-bind="$ctrl.currentdetail"></div>
+                                    <input type="text" ng-model="$ctrl.detail" class="form-control">
+                                    <br>
+                                    <label for="researchHours">Required Hours Per Week</label>
+                                    <div ng-bind="$ctrl.currenthour"></div>
+                                    <input type="number" ng-model="$ctrl.hour" class="form-control">
+                                    <button class="btn btn-info form-control" role="button" ng-click="$ctrl.updateResearch()">Update</button>
+                                    <br>
+                                    <div ng-if="$ctrl.rscUpdateFail" class="alert alert-warning">Unable to update at
+                                        this time!</div>
+                                    <div ng-if="$ctrl.rscUpdateSuc" class="alert alert-warning">Success!</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel-group">
-                <div class="panel panel-default" id="panel3">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3" ng-click="$ctrl.getSocial()">Add Your Social Media Link</a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                        <div class="panel-body">
-                                <div>Twitter: {{$ctrl.currenttwitter}} </div>
-                                <input type="text" ng-model="$ctrl.twitter" class="form-control" placeholder="Twitter">
-                                <div>Linkedin: {{$ctrl.currentlinkedin}} </div>
-                                <input type="text" ng-model="$ctrl.linkedin" class="form-control" placeholder="Linkedin">
-                                <button class="btn btn-info form-control" role="button" ng-click="$ctrl.updateSocial()">Update</button>
-                                <br>
-                                <div ng-if="$ctrl.smUpdateFail" class="alert alert-warning">Unable to update at this time!</div>
-                                <div ng-if="$ctrl.smUpdateSuc" class="alert alert-warning">Success!</div>
-                        </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default" id="panel3">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3" ng-click="$ctrl.getSocial()">Add Your Social Media
+                            Link</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div>Twitter: {{$ctrl.currenttwitter}} </div>
+                        <input type="text" ng-model="$ctrl.twitter" class="form-control" placeholder="Twitter">
+                        <div>Linkedin: {{$ctrl.currentlinkedin}} </div>
+                        <input type="text" ng-model="$ctrl.linkedin" class="form-control" placeholder="Linkedin">
+                        <button class="btn btn-info form-control" role="button" ng-click="$ctrl.updateSocial()">Update</button>
+                        <br>
+                        <div ng-if="$ctrl.smUpdateFail" class="alert alert-warning">Unable to update at this time!</div>
+                        <div ng-if="$ctrl.smUpdateSuc" class="alert alert-warning">Success!</div>
                     </div>
                 </div>
             </div>
-        </div>
     </form>
+</div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="$ctrl.cancel()" data-dismiss="modal">Close</button>

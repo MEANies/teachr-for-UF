@@ -54,9 +54,9 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
         Delete the article using the Courses factory. If the removal is successful, 
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
-      var index = $scope.Courses.indexOf(listing);
+      var index = $scope.courses.indexOf(listing);
       if (index != -1) {
-          Courses.delete($scope.Courses[index]._id);
+          Courses.delete($scope.courses[index]._id);
           $scope.Courses.splice(index, 1);
           $scope.detailedInfo = undefined;
       }
@@ -77,8 +77,8 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     };
 
     $scope.findLocation = function(listing){
-      var index = $scope.Courses.indexOf(listing);
-      var bcode = $scope.Courses[index].building_code;
+      var index = $scope.courses.indexOf(listing);
+      var bcode = $scope.courses[index].building_code;
       if (index != -1 && bcode != "")
       {
           for (var i = 0; i < Locations.data; i++) {
@@ -98,7 +98,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
 
 // TODO
     $scope.starListing = function(listing) {
-      var index_previous = $scope.Courses.indexOf(listing);
+      var index_previous = $scope.courses.indexOf(listing);
 
       if(index != -1){
         //TODO: WIP
