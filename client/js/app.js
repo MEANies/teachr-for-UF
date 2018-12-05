@@ -35,7 +35,7 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ngRoute' ,'u
                 controller: 'SearchController'
             })
 
-            $locationProvider.html5Mode(true)
+            // $locationProvider.html5Mode(true)
     })
 
     // We really need this. All the modals should be closed when navigating to places
