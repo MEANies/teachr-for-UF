@@ -53,13 +53,13 @@ angular.module('user')
 				}
 			},
 			updateResearch: function(data) {
-				return $http.put('/api/auth/change', data)
+				return $http.post('/api/auth/change', data)
 			},
 			getResearch: function(data) {
 				return $http.post('/api/auth/researchInfo', data)
 			},
 			updateSocial: function(data) {
-				return $http.put('/api/auth/changeSocial', data)
+				return $http.post('/api/auth/changeSocial', data)
 			},
 			getSocial: function(data) {
 				return $http.post('/api/auth/socialInfo', data)

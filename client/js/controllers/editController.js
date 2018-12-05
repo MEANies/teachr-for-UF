@@ -226,7 +226,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
 
 //get current info
   $ctrl.getCurrentResearch = function() {
-    User.getResearch({ username: User.getUser() }).then(function(res) {
+    User.getResearch({ username: Auth.getUser() }).then(function(res) {
       console.log('hello',res)
       $ctrl.currentdetail = res.data.detail;
       $ctrl.currenthour = res.data.hour;
@@ -237,7 +237,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     $ctrl.rscUpdateFail = false;
     $ctrl.rscUpdateSuc = false;
     let data = {
-      username: User.getUser(),
+      username: Auth.getUser(),
       research: {
         hour: $ctrl.hour,
         detail: $ctrl.detail
@@ -246,7 +246,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     User.updateResearch(data).then(function(res) {
       console.log('success update')
       $ctrl.rscUpdateSuc = true;
-      $uibModalInstance.dismiss('edit')
+      $uibModalInstance.dismiss('home')
     }, function(err) {
       console.log(err)
       $ctrl.rscUpdateFail = true;
@@ -254,7 +254,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
   }
 
   $ctrl.getSocial = function() {
-    User.getSocial({username: User.getUser()}).then(function(res) {
+    User.getSocial({username: Auth.getUser()}).then(function(res) {
       $ctrl.currenttwitter = res.data.twitter
       $ctrl.currentlinkedin = res.data.linkedin
     })
@@ -265,14 +265,14 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     $ctrl.smUpdateFail = false;
     $ctrl.smUpdateSuc = false;
     let data = {
-      username: User.getUser(),
+      username: Auth.getUser(),
       social: {
         twitter: $ctrl.twitter,
         linkedin: $ctrl.linkedin
       }
     };
     User.updateSocial(data).then(function(res) {
-      $uibModalInstance.dismiss('edit')
+      $uibModalInstance.dismiss('home')
       $ctrl.smUpdateSuc=true;
     }), function(err) {
       $ctrl.smUpdateFail = true;
