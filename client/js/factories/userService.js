@@ -1,4 +1,5 @@
 angular.module('user')
+
 	.factory('User', function (Auth, $http) {
 		console.log("Debug: User Factory");
 		var methods = {

@@ -3,7 +3,9 @@ var express = require('express'),
     User = require('../models/users.server.model.js'),
     jwt = require('jsonwebtoken'),
     bcrypt = require('bcrypt'),
-    router = express.Router();
+    router = express.Router(),
+    users = require('../controllers/users.server.controller.js');
+
 
 function getUser(username) {
     return new Promise((resolve, reject) => {
@@ -30,6 +32,12 @@ function getUserByEmail(email) {
         });
     });
 }
+
+router.route("/:userId")
+    .put(users.update);
+// maybe need this:
+// router.param('userId', users.userByEmail);
+
 
 router.put("/change", async (req, res, next) => {
 
