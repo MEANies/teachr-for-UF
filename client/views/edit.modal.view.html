@@ -25,7 +25,18 @@
                                     <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
                                             {{course.name}}</a></label>
                                     <div id="{{$index}}" class="collapse">
-                                        <table class="table table-bordered">
+                                        <div class="list-group">
+                                          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active" ng-repeat="oh in course.office_hours track by $index">
+                                            <div class="d-flex w-100 justify-content-between">
+                                              <h5 class="mb-1">{{oh.office_instructor}}</h5>
+                                              <small>{{oh.office_locationCommonName}}</small>
+                                            </div>
+                                            <p class="mb-1"> {{oh.office_meetTimeBegin}}</p>
+                                            <p class="mb-1">Time begin: Period({{oh.office_meetPeriodBegin}}) {{oh.office_meetTimeBegin}}</p>
+                                            <p class="mb-1">Time end: Period({{oh.office_meetPeriodEnd}}) {{oh.office_meetTimeEnd}}</p>
+                                          </a>
+
+                                        <!-- table class="table table-bordered">
                                             <tr>
                                                 <th>Periods:</th>
                                                 <th>Monday</th>
@@ -43,7 +54,9 @@
 
                                                 </td>
                                             </tr>
-                                        </table>
+                                        </table> -->
+
+
                                     </div>
                                 </div>
                             </div>
