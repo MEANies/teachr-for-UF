@@ -12,6 +12,25 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     Listings.getAll().then(function(response) {
       console.log("debug");
       $scope.courses = response.data.courses;
+      console.log($scope.courses);
+      $scope.courses.push(
+        {
+          code: 'CEN3031',
+          name: 'Introduction to Software Engineering',
+          department: 'Computer & Information Science & Engineering',
+          instructor_names: ['Philippa Brown'],
+          description: 'Topics include software planning, specifications, coding, testing and maintenance. Gain experience in the team approach to large system development. (M)',
+          building: '',
+          building_code: '',
+          sections: [
+            {
+              instructors: [
+                {name: 'Philippa Brown'}
+              ]
+            }
+          ]
+        }
+      )
       $scope.admins = response.data.admins;
       console.log(response.data);
     }, function(error) {
