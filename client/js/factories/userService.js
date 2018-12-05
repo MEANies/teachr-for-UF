@@ -39,6 +39,10 @@ angular.module('user')
                         message: 'User is not authorized!'
                     });
                 }
+            },
+            save_course: function (user) {
+                return $http.put('/api/auth/save_course', user)
+                // $http.put('./api/listings', listing);
             }
         }
         return methods;
