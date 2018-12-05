@@ -3,19 +3,22 @@
 
 <head>
   <!-- <base href = '/'> -->
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
+
 <style>
-.nav navbar-nav {
+.navbar {
     overflow: hidden;
     background-color: #333;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.nav navbar-nav a {
+.navbar a {
     float: left;
     font-size: 16px;
     color: white;
@@ -40,7 +43,7 @@
     margin: 0;
 }
 
-.nav navbar-nav a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: red;
 }
 
@@ -48,7 +51,7 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 1000px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -80,29 +83,30 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand">Teachr</a>
+        
          
-<ul class="nav navbar-nav">
+<ul class="navbar">
         
        
-       <div class="dropdown">
+       
+        <div class="dropdown">
     <button class="dropbtn">Services
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
     </div>
   </div> 
       </div>
-        
 	
 
 
         
 
       </ul>
-      
+
       
       <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
