@@ -9,13 +9,13 @@
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
 <style>
-.navbar {
+.nav navbar-nav {
     overflow: hidden;
     background-color: #333;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar a {
+.nav navbar-nav a {
     float: left;
     font-size: 16px;
     color: white;
@@ -40,7 +40,7 @@
     margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.nav navbar-nav a:hover, .dropdown:hover .dropbtn {
     background-color: red;
 }
 
@@ -80,10 +80,11 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand">Teachr</a>
-      </div>
-      <ul class="nav navbar-nav">
+         
+<ul class="nav navbar-nav">
         
-        <div class="dropdown">
+       
+       <div class="dropdown">
     <button class="dropbtn">Services
       <i class="fa fa-caret-down"></i>
     </button>
@@ -93,7 +94,7 @@
       <a href="#">Link 3</a>
     </div>
   </div> 
-       
+      </div>
         
 	
 
@@ -101,6 +102,8 @@
         
 
       </ul>
+      
+      
       <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
         <li><a ui-sref="search" data-toggle="modal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
