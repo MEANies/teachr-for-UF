@@ -19,7 +19,14 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
           instructor_names: ['Philippa Brown'],
           description: 'Topics include software planning, specifications, coding, testing and maintenance. Gain experience in the team approach to large system development. (M)',
           building: '',
-          building_code: ''
+          building_code: '',
+          sections: [
+            {
+              instructors: [
+                'Philippa Brown'
+              ]
+            }
+          ]
         }
       )
       $scope.admins = response.data.admins;
