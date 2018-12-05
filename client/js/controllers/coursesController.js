@@ -25,7 +25,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
           sections: [
             {
               instructors: [
-                'Philippa Brown'
+                {name: 'Philippa Brown'}
               ]
             }
           ]
