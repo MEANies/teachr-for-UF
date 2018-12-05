@@ -29,8 +29,16 @@ angular.module('directoryApp').controller('EditController',
     })
   });
 
-angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User) {
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User, $scope, Listings) {
+
+  Listings.getAll().then(function(response) {
+    $scope.listings = response.data;
+  }, function(error) {
+    console.log('Unable to retrieve listings:', error);
+  });
   var $ctrl = this;
+
+  // console.log($scope.listings[0]);
 
   $ctrl.periods = [
     {

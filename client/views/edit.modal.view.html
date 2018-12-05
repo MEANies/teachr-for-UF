@@ -10,7 +10,7 @@
                 - Research Opportunities
              -->
     <form>
-        <div id="accordion">
+        <div id="accordion" ng-app="directoryApp">
             <div class="panel-group">
                 <div class="panel panel-default" id="panel1">
                     <div class="panel-heading">
@@ -21,6 +21,9 @@
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="form-group">
+                                <div ng-repeat="listing in $scope.listings track by $index">
+                                    {{listing.code}}
+                                </div>
                                 <div ng-repeat="course in $ctrl.courses track by $index">
                                     <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
                                             {{course.name}}</a></label>
@@ -31,7 +34,6 @@
                                               <h5 class="mb-1">{{oh.office_instructor}}</h5>
                                               <small>{{oh.office_locationCommonName}}</small>
                                             </div>
-                                            <p class="mb-1"> {{oh.office_meetTimeBegin}}</p>
                                             <p class="mb-1">Time begin: Period({{oh.office_meetPeriodBegin}}) {{oh.office_meetTimeBegin}}</p>
                                             <p class="mb-1">Time end: Period({{oh.office_meetPeriodEnd}}) {{oh.office_meetTimeEnd}}</p>
                                           </a>
