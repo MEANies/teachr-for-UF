@@ -1,6 +1,8 @@
 angular.module('listings').controller('CoursesController', ['$scope', 'Courses', 'Locations','$uibModalInstance',
   function($scope, Listings, Locations, $uibModalInstance) {
 
+    let temp = 0;
+
     $scope.cancel = function () {
       console.log("Debug: Search Modal Canceled");
       $uibModalInstance.dismiss('home');
@@ -112,6 +114,34 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
               $scope.mapLong = Locations.data[i].LON;
               console.log(Locations.data[i].LAT);
               console.log(Locations.data[i].LON);
+
+              map.flyTo({
+                center: [
+                  $scope.mapLong,
+                  $scope.mapLat
+                ],
+                zoom: 17
+              });
+
+              map.addLayer({
+                id: "pin" + temp++ ,
+                type: "symbol",
+                source: {
+                  type: "geojson",
+                  data: {
+                    type: "FeatureCollection",
+                    features: [{
+                      "type": "Feature", "geometry": {
+                      "type": "Point", "coordinates": [$scope.mapLong,$scope.mapLat]
+                      }
+                    }]
+                  }
+                },
+                layout: {
+                  "icon-image": "pin",
+                }
+              });
+
             }
           }
       }
