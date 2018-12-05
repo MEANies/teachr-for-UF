@@ -9,7 +9,9 @@ angular.module('authService')
             console.log('settoken: ', token)
             $window.localStorage.setItem('token', token);
         };
-
+        authenToken.setUser = function (username) {
+            $window.localStorage.setItem('username', username)
+        }
         authenToken.setRole = function (role) {
             console.log('setrole: ', role)
             $window.localStorage.setItem('role', role);
@@ -32,6 +34,10 @@ angular.module('authService')
         authenToken.getRole = function () {
             return $window.localStorage.getItem('role');
         };
+
+        authenToken.getUser = function() {
+            return $window.localStorage.getItem('username')
+        }
 
         return authenToken;
     })

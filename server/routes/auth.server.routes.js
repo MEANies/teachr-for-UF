@@ -38,11 +38,8 @@ router.put("/change", async (req, res, next) => {
         if (!user) {
             return res.status(400).send("Error in PUT request: username entered does not exist!");
         }
-        if(req.body.oldpass !== user.password){
-            return res.status(401).send("Unauthorized attempt to change password. Incorrect old password entered!");
-        }
 
-        user.password = req.body.newpass;
+        user.research = req.body.research;
         var putUser = new User(user);
     
         putUser.save(function(err){
@@ -55,6 +52,21 @@ router.put("/change", async (req, res, next) => {
     } catch (error) {
         return res.status(500).send("Internal Server Error occured while trying to query MongoDB!");
     }
+});
+
+router.post("/researchInfo", async function(req, res, next) {
+    try {
+        const user = await getUser(req.body.username);
+        if (!user) {
+            return res.status(400).send("Error in PUT request: username entered does not exist!");
+        }
+        console.log(user.research)
+        res.status(200).json(user.research);
+
+    } catch (error) {
+        return res.status(500).send("Internal Server Error occured while trying to query MongoDB!");
+    }
+
 });
 
 router.delete("/delete", async (req, res, next) => {
@@ -139,7 +151,8 @@ router.post("/authorize", async (req, res, next) => {
                 console.log('token: ', token)
                 res.json({
                     token: token,
-                    role: user.role
+                    role: user.role,
+                    username: user.username
                 });
             } else {
                 console.log('UNAUTHORIZED User: Incorrect password for username ' + req.body.username)
