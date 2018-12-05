@@ -49,3 +49,31 @@ angular.module('directoryApp')
       }
     })
   })
+  .controller('DetailsController', function ($rootScope, $uibModal, $state, $stateParams, $window) {
+    var modalInstance = $uibModal.open({
+      windowClass: 'modal-center',
+      templateUrl: 'views/professor.modal.view.html',
+      controller: function(name) {
+        this.name = name;
+        console.log(name);
+      },
+      controllerAs: 'vm',
+      resolve: {
+        name: function () {
+          return $stateParams.name
+        }
+      }
+    })
+
+    modalInstance.result.then(function () {
+      // Value submitted
+    }, function (path) {
+      // Modal dismissed. 
+      if (path == 'backdrop click') {
+        $state.go('home');
+      }
+      else {
+        $state.go(path);
+      }
+    })
+  })

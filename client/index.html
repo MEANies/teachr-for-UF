@@ -22,6 +22,7 @@
         <li><a href="#">My Courses</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="details({name: vm.name})" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-cog"></span> Professor X</a></li>
         <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
         <li><a ui-sref="search" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><a ui-sref="signup" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

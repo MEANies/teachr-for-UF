@@ -1,5 +1,5 @@
 angular.module('listings').controller('CoursesController', ['$scope', 'Courses', 'Locations','$uibModalInstance',
-  function($scope, Courses, Locations, $uibModalInstance) {
+  function($scope, Listings, Locations, $uibModalInstance) {
 
     $scope.cancel = function () {
       console.log("Debug: Search Modal Canceled");
@@ -7,7 +7,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     };
 
     /* Get all the Courses, then bind it to the scope */
-    Courses.getAll().then(function(response) {
+    Listings.getAll().then(function(response) {
       console.log("debug");
       $scope.courses = response.data.courses;
       $scope.admins = response.data.admins;
@@ -27,7 +27,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
       saved redirect back to the list page. Otherwise, display the error
       */
       if($scope.entry !== undefined) {
-        Courses.create($scope.entry)
+        Listings.create($scope.entry)
         .then(function(res) {
           $scope.Courses.push(res.data);
           $scope.entry = undefined;
@@ -40,7 +40,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     };
 
     $scope.updateListing = function(index) {
-      Courses.put($scope.entry)
+      Listings.put($scope.entry)
       .then(function(res){
         $scope.Courses[index] = (res.data);
         $scope.entry = undefined;
@@ -57,7 +57,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
        */
       var index = $scope.Courses.indexOf(listing);
       if (index != -1) {
-          Courses.delete($scope.Courses[index]._id);
+          Listings.delete($scope.courses[index]._id);
           $scope.Courses.splice(index, 1);
           $scope.detailedInfo = undefined;
       }

@@ -27,8 +27,7 @@
                 <td><span ng-repeat="list in course.sessions">{{list}}</span></td>
                 <td>{{course.sections[0].deptName}}</td>
                 <td>{{course.description}}</td>
-                <td>{{course.building}}<button ng-click="findLocation($index)">click me</button><span>{{mapLat}}
-                        {{mapLong}}</span></td>
+                <td>{{course.building}}<button ng-click="findLocation($index)">click me</button></td>
                 <!-- <td>
                               <h2>Update Listing</h2>
                               Code: <input type="text" ng-model="newListing.code" /><br />
