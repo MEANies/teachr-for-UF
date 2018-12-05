@@ -14,8 +14,13 @@ angular.module('directoryApp').controller('SearchController',
 
     modalInstance.result.then(function () {
       // Value submitted
-    }, function () {
+    }, function (path) {
       // Modal dismissed. 
-      $state.go('home');
+      if (path == 'backdrop click') {
+        $state.go('home');
+      }
+      else {
+        $state.go(path);
+      }
     })
   })

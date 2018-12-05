@@ -2,26 +2,19 @@
 <html>
 
 <head>
+  <!-- <base href = '/'> -->
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-
-  <script>
-    function chBackcolor(e) {
-      if (e.target.style.background != 'blue')
-        e.target.style.background = 'blue';
-      else e.target.style.background = 'white';
-    }
-  </script>
 </head>
 
-<body ng-app="directoryApp">
+<body ng-app="directoryApp" ng-controller="MainController as vm">
   <!-- NavBar/Header -->
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Teachr</a>
+        <a class="navbar-brand">Teachr</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="#">My Professors</a></li>
@@ -29,10 +22,11 @@
         <li><a href="#">My Courses</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="edit" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
+        <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
         <li><a ui-sref="search" data-toggle="modal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
-        <li><a ui-sref="signup" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a ui-sref="signin" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a ui-sref="signup" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a ui-sref="signin" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a ui-sref="signin" ng-click="vm.logout()" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </nav>
@@ -40,7 +34,6 @@
   <ui-view></ui-view>
 
   <div id="map"></div>
-  
   <!-- Scripts -->
   <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -62,6 +55,7 @@
     <script src="js/factories/listingFactory.js"></script>
     <script src="js/factories/authService.js"></script>
     <script src="js/factories/userService.js"></script>
+    <script src="js/factories/locationFactory.js"></script>
 
     <!-- Controllers -->
     <script src="js/controllers/listingController.js"></script>
@@ -69,7 +63,7 @@
     <script src="js/controllers/searchController.js"></script>
     <script src="js/controllers/userController.js"></script>
     <script src="js/controllers/modalController.js"></script>
-
+    <script src="js/controllers/mainController.js"></script>
 
     <!-- Mapbox-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script> 

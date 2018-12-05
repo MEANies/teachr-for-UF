@@ -143,11 +143,12 @@ router.post("/authorize", async (req, res, next) => {
                 }, 'Hello', {
                     expiresIn: '1 days'
                 });
-
+                console.log('role: ', user.role)
+                console.log('token: ', token)
                 res.json({
                     token: token,
                     role: user.role
-                })
+                });
             } else {
                 console.log('UNAUTHORIZED User: Incorrect password for username ' + req.body.username)
                 res.status(401).send('unauthorized');

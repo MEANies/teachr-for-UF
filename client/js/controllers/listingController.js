@@ -1,13 +1,14 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 'Locations','$uibModalInstance',
-  function($scope, Listings, $uibModalInstance) {
+  function($scope, Listings, Locations, $uibModalInstance) {
 
     $scope.cancel = function () {
       console.log("Debug: Search Modal Canceled");
-      $uibModalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('home');
     };
 
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
+      console.log("debug");
       $scope.listings = response.data;
       console.log(response.data);
     }, function(error) {
@@ -75,35 +76,21 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
-    $scope.findLocation = function(listing, meetNo){
+    $scope.findLocation = function(listing){
+      console.log(listing);
+
       var index = $scope.listings.indexOf(listing);
-      var office_hours = $scope.listings[index].office_hours;
-      
-      if (index != -1)
+      var bcode = $scope.listings[index].building_code;
+      if (index != -1 && bcode != "")
       {
-        // find the office hour that corresponds to the meetNo passed in
-        var bcode_abbrev = "";
-        for (var i = 0; i < office_hours.length(); ++i){
-          if(office_hours[i].office_meetNo == meetNo){
-            bcode_abbrev = $scope.listings[index].office_hours[i].office_locationABBREV;
-          }
-        }
-        
-        // as long as there exists a location, populate with LAT and LON
-        if (bcode_abbrev != ""){
           for (var i = 0; i < Locations.data; i++) {
-            if(bcode_abbrev == Locations.data[i].ABBREV){
+            if(bcode == Locations.data[i].ID){
               $scope.mapLat = Locations.data[i].LAT;
               $scope.mapLong = Locations.data[i].LON;
               console.log(Locations.data[i].LAT);
               console.log(Locations.data[i].LON);
             }
           }
-        }
-        else{
-          throw err;
-        }
-        
       }
       else{
         throw err;
