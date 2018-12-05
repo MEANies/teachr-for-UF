@@ -4,7 +4,8 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes');
+    listingsRouter = require('../routes/listings.server.routes'),
+    coursesRouter = require('../routes/courses.server.routes'),
     authRouter = require('../routes/auth.server.routes');
 
 module.exports.init = function() {
@@ -28,6 +29,7 @@ module.exports.init = function() {
   Use the listings router for requests to the api */
   app.use('/api/listings',listingsRouter);
   app.use('/api/auth', authRouter);
+  app.use('/api/courses', coursesRouter);
 
   /**TODO 
   Go to homepage for all routes not specified */ 

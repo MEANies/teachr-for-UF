@@ -143,9 +143,11 @@ router.post("/create", async (req, res, next) => {
 
         var userObject = {
             username: req.body.username,
+            name: req.body.name,
             password: req.body.password,
             email: req.body.email,
             role: req.body.role,
+            courses: req.body.courses
         };
         userObject.tempToken = jwt.sign({username: userObject.username, email: userObject.email}, 'Hello', {expiresIn: '1 days'});
         
@@ -206,6 +208,20 @@ router.post("/authorize", async (req, res, next) => {
 
 
 });
+
+router.get('/getuser/:username', async function(req, res, next) {
+    try {
+        const user = await getUser(req.params.username);
+        if (!user) {
+            return res.status(400).send("Error in post request: username entered does not exist!");
+        }
+        console.log(user)
+        res.json(user);
+
+    } catch (error) {
+        return res.status(500).send("Internal Server Error occured while trying to query MongoDB!");
+    }
+})
 
 
 module.exports = router;

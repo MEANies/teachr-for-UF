@@ -20,7 +20,7 @@ angular.module('directoryApp')
 			if(User.loginStatus()) {
 				console.log('user just logged in')
 				vm.isLoggedIn = true;
-				if(Auth.getRole() === 'instructor') {
+				if(Auth.getRole() === 'instructor' || Auth.getRole() === 'ta') {
 					vm.isAdmin = true;
 				}
 			} else {
@@ -34,7 +34,7 @@ angular.module('directoryApp')
 		// 	console.log('called logout')
 			
 		// });
-		if(Auth.getRole() === 'instructor') {
+		if(Auth.getRole() === 'instructor' || Auth.getRole() === 'ta') {
 			vm.isAdmin = true;
 		}
 

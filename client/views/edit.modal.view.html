@@ -15,13 +15,13 @@
                 <div class="panel panel-default" id="panel1">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Edit Your Courses and Office Hours</a>
+                            <a data-toggle="collapse" href="#collapse1" ng-click="$ctrl.showMyCourses()">Edit Your Courses and Office Hours</a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="form-group">
-                                <div ng-repeat="course in $ctrl.courses track by $index">
+                                <div ng-repeat="course in $ctrl.myCourse track by $index">
                                     <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
                                             {{course.name}}</a></label>
                                     <div id="{{$index}}" class="collapse">

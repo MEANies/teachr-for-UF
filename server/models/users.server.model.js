@@ -23,7 +23,11 @@ var usersSchema = new Schema({
     type: String, 
     required: true,
 		unique: 'This username already exists!'
-  }, 
+  },
+  name: {
+    type: String,
+    required: true
+  },
   email: {
     type: String, 
     required: true, 
@@ -65,7 +69,15 @@ var usersSchema = new Schema({
       type: String,
       default: ''
     }
-  }
+  },
+  office_hours: {
+    startTime: String,
+    endTime: String,
+    buildingCode: String,
+    buildingNumber: String
+  },
+  courses: [String]
+
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */

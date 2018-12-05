@@ -41,10 +41,11 @@ angular.module('user')
 				console.log('userFac logged out')
 				Auth.deleteToken();
 			},
-			getUser: function () {
+			getUser: function (username) {
 				if (Auth.getToken()) {
 					//To-do: implement get-user in the backend
-					return Auth.getUser();
+					console.log('user service in')
+					return $http.get(`/api/auth/getuser/${username}`)
 				} else {
 					$q.reject({
 						message: 'User is not authorized!'

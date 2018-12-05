@@ -29,8 +29,29 @@ angular.module('directoryApp').controller('EditController',
     })
   });
 
-angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User, $timeout) {
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User, $timeout, Courses, Auth) {
   var $ctrl = this;
+  //search courses
+  // $ctrl.myCourse = function() {
+  //   $ctrl.
+  // }
+  var mycoursecode;
+  User.getUser(Auth.getUser()).then(function (res) {
+    mycoursecode = res.data.courses
+  })
+
+  //show my course
+  $ctrl.showMyCourses = function() {
+    let result = []
+    mycoursecode.forEach(function(course) {
+      Courses.getByCode(course, 2188).then(function(res) {
+        result.push(res.data[0]);
+      }, function(err) {
+        console.log('my course load fail');
+      });
+    });
+    $ctrl.myCourse = result;
+  }
 
   $ctrl.periods = [
     {
@@ -139,6 +160,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
       ],
     }
   ];
+
 
   $ctrl.localOfficeHours = [];
 

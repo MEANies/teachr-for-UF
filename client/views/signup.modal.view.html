@@ -17,6 +17,11 @@
                     <input type="text" id="username" name="username" class="form-control" ng-model="vm.registerData.username"
                      placeholder="Username" lowercase required>
                 </div>
+                <div class="form-group" show-er rors>
+                        <label for="username">Display Name <span style="color:red; margin: auto">*</span></label>
+                        <input type="text" id="name" name="name" class="form-control" ng-model="vm.registerData.name"
+                         placeholder="FirstName LastName" required>
+                    </div>
                 <div class="form-group" show-errors>
                     <label for="password">Password <span style="color:red; margin: auto">*</span></label>
                     <input type="password" id="password" name="password" class="form-control" ng-model="vm.registerData.password"
@@ -29,18 +34,26 @@
                     &nbsp; &nbsp;
                     <div class='form-group'>
                         <input type="radio" id="radioButton" name="gender" ng-model="vm.registerData.role" Value="user">
-                    </br>
                         &nbsp;Student
                         &nbsp;
                     </br>
                         <input type="radio" id="radio" name="gender" ng-model="vm.registerData.role" Value="instructor">
                         &nbsp;Instructor/Researcher/Staff
-                        &nbsp;
+                    </br>
+                    <input type="radio" id="radio" name="gender" ng-model="vm.registerData.role" Value="ta">
+                    &nbsp;TA
+                    &nbsp;
                     </div>
                     <!-- <div ng-messages="vm.userForm.gender.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">Gender is required.</p>
                       </div> -->
                 </div>
+                <div class="form-group" ng-if="(vm.registerData.role=='instructor' || vm.registerData.role=='ta')">
+                        <label for="courses">Courses Code<span style="color:red; margin: auto">*</span></label>
+                        <input type="courses" id="courses" name="password" class="form-control" ng-model="vm.registerData.courses"
+                            placeholder="Seperate by comma" uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="outsideClick"
+                            required>
+                    </div>
                 <div class="text-center form-group">
                     <button type="submit" class="btn btn-primary" ng-click="vm.register()">Sign up</button>
                     &nbsp; or&nbsp;

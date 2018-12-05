@@ -3,7 +3,7 @@ angular.module('directoryApp').controller('SearchController',
     var modalInstance = $uibModal.open({
       windowClass: 'modal-center',
       templateUrl: 'views/search.modal.view.html',
-      controller: 'ListingsController',
+      controller: 'CoursesController',
       controllerAs: '$ctrl',
       resolve: {
         item: function () {
