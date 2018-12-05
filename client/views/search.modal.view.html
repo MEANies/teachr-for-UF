@@ -16,8 +16,6 @@
                 <th>Department</th>
                 <th>Description</th>
                 <th>Location</th>
-                <th>Save</th>
-                <th>Remove</th>
             </tr>
             <tr ng-repeat="course in courses | filter: search">
 
@@ -27,19 +25,17 @@
                 <td><a ng-repeat="list in course.sections[0].instructors" ui-sref="details({name: list.name})" ng-click="$dismiss('cancel')">{{list.name}}</br></a></td>
                 <td>{{course.sections[0].deptName}}</td>
                 <td>{{course.description}}</td>
+<<<<<<< HEAD
                 <td>{{course.building}}<button ng-click="findLocation(course)">click me</button></td>
+=======
+                <td>{{course.building}}<button class="btn btn-default btn-sm" ng-click="findLocation($index)"><span class="glyphicon glyphicon-map-marker"></button></td>
+>>>>>>> 88e50a730123363f25a2047d80623ade182d6189
                 <!-- <td>
                               <h2>Update Listing</h2>
                               Code: <input type="text" ng-model="newListing.code" /><br />
                               Name: <input type="text" ng-model="newListing.name" /><br />
                               <button class="btn btn-primary" ng-click="updateListing($index)">Update</button>
                           </td> -->
-                <td ng-click="starListing(listing)">
-                    <span id="star" style="color: black;" class="glyphicon glyphicon-star"></span>
-                </td>
-                <td ng-click="deleteListing(listing)">
-                    <span id="star" style="color: black;" class="glyphicon glyphicon-remove"></span>
-                </td>
             </tr>
 
         </table>
