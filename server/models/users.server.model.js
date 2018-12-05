@@ -48,7 +48,10 @@ var usersSchema = new Schema({
   tempToken: {
     type: String,
     required: true
-  }
+  },
+  saved_courses: {
+    type: [String],
+  },
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */

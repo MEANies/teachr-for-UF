@@ -26,7 +26,7 @@
     menuService.addSubMenuItem('topbar', 'coursecruds', {
       title: 'Create Coursecrud',
       state: 'coursecruds.create',
-      roles: ['user']
+      roles: ['admin']
     });
   }
 }());
