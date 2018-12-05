@@ -24,7 +24,7 @@
                 <td>{{course.code}}</td>
                 <td>{{course.name}}</td>
                 <!-- <td><span ng-repeat="list in listing.instructor_names">{{list}}</span></td> -->
-                <td><span ng-repeat="list in course.sessions">{{list}}</span></td>
+                <td><span ng-repeat="list in course.sections[0].instructors">{{list.name}}</br></span></td>
                 <td>{{course.sections[0].deptName}}</td>
                 <td>{{course.description}}</td>
                 <td>{{course.building}}<button ng-click="findLocation($index)">click me</button></td>
