@@ -39,7 +39,7 @@ router.route("/:userId")
 // router.param('userId', users.userByEmail);
 
 
-router.put("/change", async (req, res, next) => {
+router.post("/change", async (req, res, next) => {
 
     try {
         const user = await getUser(req.body.username);
@@ -62,7 +62,7 @@ router.put("/change", async (req, res, next) => {
     }
 });
 
-router.put("/changeSocial", async (req, res, next) => {
+router.post("/changeSocial", async (req, res, next) => {
 
     try {
         const user = await getUser(req.body.username);
