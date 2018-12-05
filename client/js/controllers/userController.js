@@ -36,7 +36,12 @@ angular.module('user')
 					}
 					return output;
 				}
-				vm.registerData.courses = trimall(vm.registerData.courses.split(','))
+				console.log(vm.registerData.courses)
+				console.log(vm.registerData.courses !== undefined )
+				if(vm.registerData.courses !== undefined ) {
+					vm.registerData.courses = trimall(vm.registerData.courses.split(','))
+				}
+					
 				console.log(vm.registerData.courses)
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
