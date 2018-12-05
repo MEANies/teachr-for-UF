@@ -26,3 +26,4 @@
                     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
                 .addTo(map);
         });
+        

@@ -66,17 +66,6 @@ var geojson = {
                 title: '',
                 description: ''
             }
-        },
-        {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: []
-            },
-            properties: {
-                title: '',
-                description: ''
-            }
-        },
+        }
     ]
 };
