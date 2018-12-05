@@ -55,6 +55,16 @@ var usersSchema = new Schema({
       type: String,
       default: ''
     }
+  },
+  social: {
+    twitter: {
+      type: String,
+      default: ''
+    },
+    linkedin: {
+      type: String,
+      default: ''
+    }
   }
 });
 

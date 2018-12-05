@@ -275,4 +275,30 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
       $ctrl.rscUpdateFail = true;
     });
   }
+
+  $ctrl.getSocial = function() {
+    User.getSocial({username: User.getUser()}).then(function(res) {
+      $ctrl.currenttwitter = res.data.twitter
+      $ctrl.currentlinkedin = res.data.linkedin
+    })
+  }
+
+  //edit social media account
+  $ctrl.updateSocial = function() {
+    $ctrl.smUpdateFail = false;
+    $ctrl.smUpdateSuc = false;
+    let data = {
+      username: User.getUser(),
+      social: {
+        twitter: $ctrl.twitter,
+        linkedin: $ctrl.linkedin
+      }
+    };
+    User.updateSocial(data).then(function(res) {
+      $uibModalInstance.dismiss('edit')
+      $ctrl.smUpdateSuc=true;
+    }), function(err) {
+      $ctrl.smUpdateFail = true;
+    }
+  }
 });
