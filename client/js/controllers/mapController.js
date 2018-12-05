@@ -12,7 +12,7 @@
   },
   trackUserLocation: true
 }));
-map.loadImage("teachr-for-UF/client/styles/assets"), function(err, image){
+map.loadImage("https://i.imgur.com/1LzQt93.png"), function(err, image){
     if (err) throw err;
     map.addImage("pin", image);
 }

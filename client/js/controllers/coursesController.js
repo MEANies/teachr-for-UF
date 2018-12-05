@@ -104,24 +104,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
                 zoom: 17
               });
 
-              map.addLayer({
-                id: "pin" + temp++ ,
-                type: "symbol",
-                source: {
-                  type: "geojson",
-                  data: {
-                    type: "FeatureCollection",
-                    features: [{
-                      "type": "Feature", "geometry": {
-                      "type": "Point", "coordinates": [$scope.mapLong,$scope.mapLat]
-                      }
-                    }]
-                  }
-                },
-                layout: {
-                  "icon-image": "pin",
-                }
-              });
+              var marker = new mapboxgl.Marker().setLngLat([$scope.mapLong, $scope.mapLat]).addTo(map);
 
             }
           }
