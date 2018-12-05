@@ -1,8 +1,8 @@
 <div class="modal-header">
     <button type="button" class="close" ng-click="$dismiss('home')">&times;</button>
-    <h4 class="modal-title"> *Professor/Course/TA*'s Office Hours</h4>
+    <h4 class="modal-title"> {{vm.name}}'s Office Hours</h4>
 </div>
-<div class="modal-body" ng-app="directoryApp">
+<div class="modal-body" ng-app="directoryApp" ng-controller="DetailsInstanceController as ctrl">
     <!-- 
               Things that need to go here:
                 - Twitter
@@ -13,8 +13,30 @@
             -->
     <div id="officeHours">
         <label for="officeHours">Office Hours</label>
-        <p>M/W/F 3:00PM - 3:50PM</p>
-        <div>input goes here</div>
+        <div ng-repeat="course in $ctrl.myCourse track by $index">
+            <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
+                    {{course.name}}</a></label>
+            <div id="{{$index}}" class="collapse">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Periods:</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                    <tr ng-repeat="period in $ctrl.periods">
+                        <td>
+                            {{period.time}}
+                        </td>
+                        <td id="cell" ng-repeat="day in period.days track by $index" ng-class="{active: ($ctrl.checkCellState($parent.$index, $index) == true)}">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
     <div id="research">
         <label for="research">Research Opportunities</label>
