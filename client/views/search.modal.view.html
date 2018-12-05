@@ -19,14 +19,14 @@
                 <th>Save</th>
                 <th>Remove</th>
             </tr>
-            <tr ng-repeat="listing in listings | filter: search">
+            <tr ng-repeat="listing in listings track by $index">
 
                 <td>{{listing.code}}</td>
                 <td>{{listing.name}}</td>
-                <td><span ng-repeat="list in listing.instructor_names">{{list}}</span></td>
+                <td><span ng-repeat="list in listing.instructor_names track by $index">{{list}}</span></td>
                 <td>{{listing.department}}</td>
                 <td>{{listing.description}}</td>
-                <td>{{listing.building}}<button ng-click="findLocation($index)">click me</button><span>{{mapLat}}
+                <td>{{listing.building}}<button ng-click="findLocation(listing)">click me</button><span>{{mapLat}}
                         {{mapLong}}</span></td>
                 <!-- <td>
                               <h2>Update Listing</h2>

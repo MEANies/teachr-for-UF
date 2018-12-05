@@ -76,6 +76,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     };
 
     $scope.findLocation = function(listing){
+      console.log(listing);
+
       var index = $scope.listings.indexOf(listing);
       var bcode = $scope.listings[index].building_code;
       if (index != -1 && bcode != "")
