@@ -34,6 +34,65 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
   //search courses
   var mycoursecode;
 
+  $ctrl.periods = [
+    {
+      time: '(1) 7:25 AM - 8:15 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(2) 8:30 AM - 9:20 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(3) 9:35 AM - 10:25 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(4) 10:40 AM - 11:30 AM',
+      days: new Array(5)
+    },
+    {
+      time: '(5) 11:45 AM - 12:35 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(6) 12:50 PM - 1:40 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(7) 1:55 PM - 2:45 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(8) 3:00 PM - 3:50 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(9) 4:05 PM - 4:55 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(10) 5:10 PM - 6:00 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(11) 6:15 PM - 7:05 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E1) 7:20 PM - 8:10 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E2) 8:20 PM - 9:10 PM',
+      days: new Array(5)
+    },
+    {
+      time: '(E3) 9:20 PM - 10:10 PM',
+      days: new Array(5)
+    }
+  ];
+
   // $ctrl.myCourse = function() {
   //   $ctrl.
   // }
@@ -64,7 +123,19 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     $uibModalInstance.dismiss('home');
   };
 
-  $ctrl.localOfficeHours = [];
+  $ctrl.localOfficeHours = [
+    {
+      key: 3,
+      value: [
+        {
+          key: 3,
+          value: true
+        }
+      ]
+    }
+  ];
+
+
 
   $ctrl.togglePeriod = function (parent, index) {
 
