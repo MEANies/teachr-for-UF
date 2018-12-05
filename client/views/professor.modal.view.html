@@ -13,7 +13,7 @@
             -->
     <div id="officeHours">
         <label for="officeHours">Office Hours</label>
-        <div ng-repeat="course in $ctrl.myCourse track by $index">
+        <div ng-repeat="course in ctrl.myCourse track by $index">
             <label> <a data-toggle="collapse" data-target="#{{$index}}">{{course.code}}
                     {{course.name}}</a></label>
             <div id="{{$index}}" class="collapse">
@@ -26,11 +26,11 @@
                         <th>Thursday</th>
                         <th>Friday</th>
                     </tr>
-                    <tr ng-repeat="period in $ctrl.periods">
+                    <tr ng-repeat="period in ctrl.periods">
                         <td>
                             {{period.time}}
                         </td>
-                        <td id="cell" ng-repeat="day in period.days track by $index" ng-class="{active: ($ctrl.checkCellState($parent.$index, $index) == true)}">
+                        <td id="cell" ng-repeat="day in period.days track by $index" ng-class="{active: (ctrl.checkCellState($parent.$index, $index) == true)}">
 
                         </td>
                     </tr>
@@ -43,11 +43,13 @@
         <p>1 Research Assistant in Spatial Computing</p>
     </div>
     <div id="twitter-widget-holder">
+        <label>Twitter</label>
         <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw" data-tweet-limit="1">Tweets
-            by {{vm.twitter}}</a>
+            by {{$ctrl.twitter}}</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     <div id="RateMyProfessor">
+        <label>RateMyProfessor</label>
         <p>RateMyProfessor Details</p>
     </div>
 </div>

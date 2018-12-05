@@ -70,7 +70,7 @@ angular.module('directoryApp')
     }, function (path) {
       // Modal dismissed. 
       if (path == 'backdrop click') {
-        $state.go('home');
+        $state.go('search');
       }
       else {
         $state.go(path);
