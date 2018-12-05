@@ -5,7 +5,7 @@
 <div class="modal-body" ng-app="directoryApp">
     <div class="input-group" id="search-bar">
         <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        <input type="text" ng-model="search" class="form-control" placeholder="Search" ng-keyup="($event.keyCode != 0 && search !== '') ? updateResult() : null" >
     </div>
     <div class="tableWrapper">
         <table class="table table-striped table-hover">
@@ -23,8 +23,9 @@
 
                 <td>{{course.code}}</td>
                 <td>{{course.name}}</td>
-                <td><span ng-repeat="list in listing.instructor_names">{{list}}</span></td>
-                <td>{{course.department}}</td>
+                <!-- <td><span ng-repeat="list in listing.instructor_names">{{list}}</span></td> -->
+                <td><span ng-repeat="list in course.sessions">{{list}}</span></td>
+                <td>{{course.sections[0].deptName}}</td>
                 <td>{{course.description}}</td>
                 <td>{{course.building}}<button ng-click="findLocation($index)">click me</button><span>{{mapLat}}
                         {{mapLong}}</span></td>
