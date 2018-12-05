@@ -90,11 +90,16 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     };
 
     $scope.findLocation = function(listing){
-      var index = $scope.Courses.indexOf(listing);
-      var bcode = $scope.Courses[index].building_code;
+      //console.log($scope.courses, listing)
+      var index = $scope.courses.indexOf(listing);
+      console.log(index)
+      var bcode = $scope.courses[index].sections[0].meetTimes[0].meetBldgCode;
+      console.log(bcode)
       if (index != -1 && bcode != "")
-      {
-          for (var i = 0; i < Locations.data; i++) {
+      { 
+          console.log('hello')
+          for (var i = 0; i < Locations.data.length; i++) {
+            //console.log(Locations.data[i])
             if(bcode == Locations.data[i].ID){
               $scope.mapLat = Locations.data[i].LAT;
               $scope.mapLong = Locations.data[i].LON;
@@ -110,7 +115,7 @@ angular.module('listings').controller('CoursesController', ['$scope', 'Courses',
     }
 
     $scope.updateResult = function() {
-      Courses.getByCode($scope.search, 2188).then(function(res) {
+      Listings.getByCode($scope.search, 2188).then(function(res) {
         $scope.courses = res.data;
       }, function(err) {
         console.log(err)
