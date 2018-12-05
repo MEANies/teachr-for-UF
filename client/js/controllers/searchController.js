@@ -1,9 +1,9 @@
 angular.module('directoryApp').controller('SearchController',
   function ($rootScope, $uibModal, $state, $stateParams, $window) {
     var modalInstance = $uibModal.open({
-      windowClass: 'modal-center',
+      windowClass: 'app-modal-window',
       templateUrl: 'views/search.modal.view.html',
-      controller: 'ListingsController',
+      controller: 'CoursesController',
       controllerAs: '$ctrl',
       resolve: {
         item: function () {

@@ -1,10 +1,10 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
-		bcrypt = require('bcrypt'),
-    Schema = mongoose.Schema;
+  bcrypt = require('bcrypt'),
+  Schema = mongoose.Schema;
 
-var validateUFLEmail = function(email) {
-	if(/@ufl.edu\s*$/.test(email)) {
+var validateUFLEmail = function (email) {
+  if (/@ufl.edu\s*$/.test(email)) {
     return true;
   } else {
     return false;
@@ -20,23 +20,27 @@ var validateUsername = function (username) {
 /* Create your schema */
 var usersSchema = new Schema({
   username: {
-    type: String, 
+    type: String,
     required: true,
-		unique: 'This username already exists!'
-  }, 
+    unique: 'This username already exists!'
+  },
+  name: {
+    type: String,
+    required: true
+  },
   email: {
-    type: String, 
-    required: true, 
-		unique: true,
-		validate: [validateUFLEmail, 'Please use your ufl email to signup!']
-  }, 
+    type: String,
+    required: true,
+    unique: true,
+    validate: [validateUFLEmail, 'Please use your ufl email to signup!']
+  },
   password: {
-    type: String, 
+    type: String,
     required: true
   },
   role: {
-		type: String,
-		required: 'Please choose your role!'
+    type: String,
+    required: 'Please choose your role!'
   },
   created_at: {
     type: Date,
@@ -46,17 +50,49 @@ var usersSchema = new Schema({
     type: String,
     required: true
   },
+  research: {
+    hour: {
+      type: Number,
+      default: 0
+    },
+    detail: {
+      type: String,
+      default: ''
+    }
+  },
+  social: {
+    twitter: {
+      type: String,
+      default: ''
+    },
+    linkedin: {
+      type: String,
+      default: ''
+    }
+  },
+  office_hours: [
+    {
+      key: Number,
+      value: [
+        {
+          key: Number,
+          value: Boolean
+        }
+      ]
+    }
+  ],
+  courses: [String],
+
   saved_courses: {
     type: [String],
   },
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
-usersSchema.pre('save', function(next) {
+usersSchema.pre('save', function (next) {
   var currentTime = new Date;
   this.updated_at = currentTime;
-  if(!this.created_at)
-  {
+  if (!this.created_at) {
     this.created_at = currentTime;
   }
   next();

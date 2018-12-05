@@ -22,8 +22,9 @@
         <li><a href="#">My Courses</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a ui-sref="details({name: vm.name})" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-cog"></span> Professor X</a></li> -->
         <li><a ui-sref="edit" data-toggle="modal" ng-show="vm.isAdmin"><span class="glyphicon glyphicon-cog"></span> Edit</a></li>
-        <li><a ui-sref="search" data-toggle="modal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+        <li><a ui-sref="search" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><a ui-sref="signup" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a ui-sref="signin" data-toggle="modal" ng-show="!vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a ui-sref="signin" ng-click="vm.logout()" data-toggle="modal" ng-show="vm.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -56,14 +57,16 @@
     <script src="js/factories/authService.js"></script>
     <script src="js/factories/userService.js"></script>
     <script src="js/factories/locationFactory.js"></script>
+    <script src="js/factories/coursesService.js"></script>
 
     <!-- Controllers -->
-    <script src="js/controllers/listingController.js"></script>
+    <script src="js/controllers/coursesController.js"></script>
     <script src="js/controllers/editController.js"></script>
     <script src="js/controllers/searchController.js"></script>
     <script src="js/controllers/userController.js"></script>
     <script src="js/controllers/modalController.js"></script>
     <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/detailsController.js"></script>
 
     <!-- Mapbox-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script> 

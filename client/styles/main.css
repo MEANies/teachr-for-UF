@@ -114,3 +114,16 @@ li a:hover {
 .table>tbody>tr>td.active {
   background-color: blue !important;
 }
+#researchArea{
+  margin-bottom: 11px !important;
+}
+.app-modal-window .modal-dialog {
+  width:1200px !important;
+}
+.app-modal-window .modal-content {
+  width:1200px !important;
+}
+#needsPadding{
+margin-top: 10px !important;
+margin-bottom: 10px !important;
+}

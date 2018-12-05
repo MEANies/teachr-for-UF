@@ -24,12 +24,25 @@ angular.module('user')
 				}
 
 				//call methods inside userService 
-				if (vm.registerData.username === undefined || vm.registerData.password === undefined || vm.registerData.email === undefined || vm.registerData.role === undefined ||
-					vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.role == '') {
+				if (vm.registerData.username === undefined || vm.registerData.password === undefined || vm.registerData.email === undefined || vm.registerData.name === undefined || vm.registerData.role === undefined ||
+					vm.registerData.username == "" || vm.registerData.password == "" || vm.registerData.email == "" || vm.registerData.name === '' ||vm.registerData.role == '') {
 					vm.formError = true;
 					return;
 				}
-
+				function trimall(input) {
+					output=[];
+					for(let i=0; i<input.length; i++) {
+						output.push(input[i].trim());
+					}
+					return output;
+				}
+				console.log(vm.registerData.courses)
+				console.log(vm.registerData.courses !== undefined )
+				if(vm.registerData.courses !== undefined ) {
+					vm.registerData.courses = trimall(vm.registerData.courses.split(','))
+				}
+					
+				console.log(vm.registerData.courses)
 				User.register(vm.registerData).then(function (response) {
 					console.log("Debug: vm.User.register")
 

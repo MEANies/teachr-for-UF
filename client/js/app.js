@@ -35,6 +35,11 @@ var app = angular.module('directoryApp', ['listings', 'ngAnimate', 'ngRoute' ,'u
                 controller: 'SearchController'
             })
 
+            .state('details', {
+                url: '/:name',
+                controller: 'DetailsController'
+            })
+
             // $locationProvider.html5Mode(true)
     })
 

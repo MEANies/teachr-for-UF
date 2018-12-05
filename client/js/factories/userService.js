@@ -19,6 +19,7 @@ angular.module('user')
 					Auth.setToken(data.data.token);
 					console.log('user role: ', data.data.role)
 					Auth.setRole(data.data.role);
+					Auth.setUser(data.data.username);
 					let role = Auth.getRole();
 					console.log('UserService getrole: ', role)
 					return data;
@@ -40,15 +41,28 @@ angular.module('user')
 				console.log('userFac logged out')
 				Auth.deleteToken();
 			},
-			getUser: function () {
+			getUser: function (username) {
 				if (Auth.getToken()) {
 					//To-do: implement get-user in the backend
-					return $http.get('/api/auth/currentUser');
+					console.log('user service in')
+					return $http.get(`/api/auth/getuser/${username}`)
 				} else {
 					$q.reject({
 						message: 'User is not authorized!'
 					});
 				}
+			},
+			updateResearch: function(data) {
+				return $http.put('/api/auth/change', data)
+			},
+			getResearch: function(data) {
+				return $http.post('/api/auth/researchInfo', data)
+			},
+			updateSocial: function(data) {
+				return $http.put('/api/auth/changeSocial', data)
+			},
+			getSocial: function(data) {
+				return $http.post('/api/auth/socialInfo', data)
 			}
 		}
 		return methods;

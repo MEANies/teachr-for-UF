@@ -1,5 +1,5 @@
 angular.module('directoryApp').controller('EditController',
-  function ($rootScope, $uibModal, $state, $stateParams, $window) {
+  function ($rootScope, $uibModal, $state, $stateParams, $window, User) {
 
     var modalInstance = $uibModal.open({
       windowClass: 'modal-center',
@@ -29,67 +29,31 @@ angular.module('directoryApp').controller('EditController',
     })
   });
 
-angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User) {
+angular.module('directoryApp').controller('EditModalInstanceController', function ($uibModalInstance, User, $timeout, Courses, Auth) {
   var $ctrl = this;
+  //search courses
+  var mycoursecode;
 
-  $ctrl.periods = [
-    {
-      time: '(1) 7:25 AM - 8:15 AM',
-      days: new Array(5)
-    },
-    {
-      time: '(2) 8:30 AM - 9:20 AM',
-      days: new Array(5)
-    },
-    {
-      time: '(3) 9:35 AM - 10:25 AM',
-      days: new Array(5)
-    },
-    {
-      time: '(4) 10:40 AM - 11:30 AM',
-      days: new Array(5)
-    },
-    {
-      time: '(5) 11:45 AM - 12:35 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(6) 12:50 PM - 1:40 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(7) 1:55 PM - 2:45 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(8) 3:00 PM - 3:50 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(9) 4:05 PM - 4:55 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(10) 5:10 PM - 6:00 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(11) 6:15 PM - 7:05 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(E1) 7:20 PM - 8:10 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(E2) 8:20 PM - 9:10 PM',
-      days: new Array(5)
-    },
-    {
-      time: '(E3) 9:20 PM - 10:10 PM',
-      days: new Array(5)
-    }
-  ];
+  // $ctrl.myCourse = function() {
+  //   $ctrl.
+  // }
+
+  User.getUser(Auth.getUser()).then(function (res) {
+    mycoursecode = res.data.courses
+  })
+
+  //show my course
+  $ctrl.showMyCourses = function() {
+    let result = []
+    mycoursecode.forEach(function(course) {
+      Courses.getByCode(course, 2188).then(function(res) {
+        result.push(res.data[0]);
+      }, function(err) {
+        console.log('my course load fail');
+      });
+    });
+    $ctrl.myCourse = result;
+  }
 
   $ctrl.ok = function () {
     $uibModalInstance.close('Closed');
@@ -100,53 +64,7 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
     $uibModalInstance.dismiss('home');
   };
 
-  $ctrl.courses = [
-    {
-      "code": "CEN3031",
-      "name": "Introduction to Software Engineering",
-      "department": "Computer & Information Science & Engineering",
-      "description": "Topics include software planning, specifications, coding, testing and maintenance. Gain experience in the team approach to large system development. (M)",
-      "building": "CAR",
-      "building_code": "0022",
-      "office_hours": [
-        {
-          "office_meetTimeBegin": "4:05 PM",
-          "office_meetTimeEnd": "4:55 PM",
-          "office_meetPeriodBegin": 9,
-          "office_meetPeriodEnd": 9,
-          "office_instructor": "Adeel",
-          "office_locationCommonName": "CSE",
-          "office_meetDays": [
-            "W"
-          ]
-        },
-        {
-          "office_meetTimeBegin": "9:35 AM",
-          "office_meetTimeEnd": "11:30 AM",
-          "office_meetPeriodBegin": 3,
-          "office_meetPeriodEnd": 4,
-          "office_instructor": "Pedro",
-          "office_locationCommonName": "CSE",
-          "office_meetDays": [
-            "M",
-            "W",
-            "F"
-          ]
-        }
-      ],
-      "instructor_names": [
-        "Philippa Brown"
-      ],
-    }
-  ];
-
   $ctrl.localOfficeHours = [];
-
-
-  $ctrl.formatOfficeHours = function () {
-  }
-
-  $ctrl.formatOfficeHours();
 
   $ctrl.togglePeriod = function (parent, index) {
 
@@ -235,11 +153,58 @@ angular.module('directoryApp').controller('EditModalInstanceController', functio
 
   }
 
-  // User.getAdminCourses().then(function(response) {
-  //   $ctrl.courses = response.data;
-  //   $ctrl.courses.forEach(course => {
-  //     // TODO
-  //   });
-  // }
-  // )
+//get current info
+  $ctrl.getCurrentResearch = function() {
+    User.getResearch({ username: User.getUser() }).then(function(res) {
+      console.log('hello',res)
+      $ctrl.currentdetail = res.data.detail;
+      $ctrl.currenthour = res.data.hour;
+    })
+  }
+  
+  $ctrl.updateResearch = function() {
+    $ctrl.rscUpdateFail = false;
+    $ctrl.rscUpdateSuc = false;
+    let data = {
+      username: User.getUser(),
+      research: {
+        hour: $ctrl.hour,
+        detail: $ctrl.detail
+      }
+    }
+    User.updateResearch(data).then(function(res) {
+      console.log('success update')
+      $ctrl.rscUpdateSuc = true;
+      $uibModalInstance.dismiss('edit')
+    }, function(err) {
+      console.log(err)
+      $ctrl.rscUpdateFail = true;
+    });
+  }
+
+  $ctrl.getSocial = function() {
+    User.getSocial({username: User.getUser()}).then(function(res) {
+      $ctrl.currenttwitter = res.data.twitter
+      $ctrl.currentlinkedin = res.data.linkedin
+    })
+  }
+
+  //edit social media account
+  $ctrl.updateSocial = function() {
+    $ctrl.smUpdateFail = false;
+    $ctrl.smUpdateSuc = false;
+    let data = {
+      username: User.getUser(),
+      social: {
+        twitter: $ctrl.twitter,
+        linkedin: $ctrl.linkedin
+      }
+    };
+    User.updateSocial(data).then(function(res) {
+      $uibModalInstance.dismiss('edit')
+      $ctrl.smUpdateSuc=true;
+    }), function(err) {
+      $ctrl.smUpdateFail = true;
+    }
+  }
 });
